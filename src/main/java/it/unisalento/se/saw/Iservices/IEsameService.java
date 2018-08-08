@@ -1,0 +1,14 @@
+package it.unisalento.se.saw.Iservices;
+
+import java.util.List;
+
+import it.unisalento.se.saw.domain.Esame;
+import it.unisalento.se.saw.exceptions.EsameNotFoundException;
+
+public interface IEsameService {
+	public List<Esame> getAll() throws EsameNotFoundException;
+	public Esame save(Esame esame);
+	public void removeEsameById (int id) throws EsameNotFoundException;
+	public Esame getById(int id) throws EsameNotFoundException;
+	public int count() throws EsameNotFoundException;
+}
