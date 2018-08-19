@@ -44,13 +44,13 @@ public class DocenteRestController {
 		List<Docente> doc = null;
 		List<DocenteDTO> docDTO=new ArrayList<DocenteDTO>();
 		doc=(docenteService.getAll());
-		int idutente;
+
 		int i;
 		Utente utente=new Utente();
 		for(i=0;i<doc.size();i++) {
 			DocenteDTO docenteDTO= new DocenteDTO();
-			idutente=doc.get(i).getUtenteIdUtente();
-			utente=utenteService.getById(idutente);
+			utente=doc.get(i).getUtente();
+			utente=utenteService.getById(utente.getIdUtente());
 			docenteDTO.setName(utente.getNome());
 			docenteDTO.setSurname(utente.getCognome());
 			docenteDTO.setData(utente.getDatanascita().toString());
