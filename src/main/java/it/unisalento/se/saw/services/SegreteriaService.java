@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import it.unisalento.se.saw.Iservices.ISegreteriaService;
-import it.unisalento.se.saw.domain.SegreteriaDidattica;
+import it.unisalento.se.saw.domain.Corso;
+import it.unisalento.se.saw.domain.Segreteria;
 import it.unisalento.se.saw.exceptions.SegreteriaNotFoundException;
 import it.unisalento.se.saw.repositories.SegreteriaRepository;
 
@@ -14,13 +15,13 @@ public class SegreteriaService implements ISegreteriaService{
 	SegreteriaRepository segreteriaRepository;
 	
 	@Override
-	public List<SegreteriaDidattica> getAll() throws SegreteriaNotFoundException {
+	public List<Segreteria> getAll() throws SegreteriaNotFoundException {
 		// TODO Auto-generated method stub
 		return segreteriaRepository.findAll();
 	}
 
 	@Override
-	public SegreteriaDidattica save(SegreteriaDidattica segreteria) {
+	public Segreteria save(Segreteria segreteria) {
 		// TODO Auto-generated method stub
 		return segreteriaRepository.save(segreteria);
 	}
@@ -32,7 +33,7 @@ public class SegreteriaService implements ISegreteriaService{
 	}
 
 	@Override
-	public SegreteriaDidattica getById(int id) throws SegreteriaNotFoundException {
+	public Segreteria getById(int id) throws SegreteriaNotFoundException {
 		// TODO Auto-generated method stub
 		return segreteriaRepository.getOne(id);
 	}
@@ -42,5 +43,5 @@ public class SegreteriaService implements ISegreteriaService{
 		// TODO Auto-generated method stub
 		return (int) segreteriaRepository.count();
 	}
-
+	
 }

@@ -2,8 +2,8 @@ package it.unisalento.se.saw.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import it.unisalento.se.saw.domain.SegreteriaDidattica;
+import it.unisalento.se.saw.domain.Segreteria;
 
-public interface SegreteriaRepository extends JpaRepository<SegreteriaDidattica, Integer>{
+public interface SegreteriaRepository extends JpaRepository<Segreteria, Integer>{
 
 }
