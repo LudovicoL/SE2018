@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 19-ago-2018 9.45.50 by Hibernate Tools 5.2.0.Final
+// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -71,7 +71,7 @@ public class Insegnamento  implements java.io.Serializable {
     }
 
     
-    @Column(name="CFU")
+    @Column(name="cfu")
     public Integer getCfu() {
         return this.cfu;
     }
