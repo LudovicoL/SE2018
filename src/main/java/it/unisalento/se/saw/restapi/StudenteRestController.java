@@ -21,9 +21,10 @@ import it.unisalento.se.saw.Iservices.IUtenteService;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.StudenteDTO;
-import it.unisalento.se.saw.dto.UtenteDTO;
+import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
+import it.unisalento.se.saw.services.CorsoService;
 
 
 
@@ -36,7 +37,9 @@ public class StudenteRestController {
 	IStudenteService studenteService;
 	@Autowired
 	IUtenteService utenteService;
-	
+	@Autowired
+	CorsoService corsoService;
+
 	public StudenteRestController() {
 		super();
 	}
@@ -51,21 +54,18 @@ public class StudenteRestController {
 		List<Studente> stud = null;
 		List<StudenteDTO> studDTO=new ArrayList<StudenteDTO>();
 		stud=(studenteService.getAll());
-		int idutente;
 		int i;
 		Utente utente=new Utente();
-		System.out.println(stud.get(0).getMatricola());
 		for(i=0;i<stud.size();i++) {
 			StudenteDTO studenteDTO= new StudenteDTO();
-			idutente=stud.get(i).getUtenteIdUtente();
-			utente=utenteService.getById(idutente);
+			studenteDTO.setMatricola(stud.get(i).getMatricola());
+			studenteDTO.setIdcorso(stud.get(i).getCorso().getIdCorso());
+			utente=stud.get(i).getUtente();
 			studenteDTO.setName(utente.getNome());
 			studenteDTO.setSurname(utente.getCognome());
 			studenteDTO.setData(utente.getDatanascita().toString());
 			studenteDTO.setEmail(utente.getEmail());
-			studenteDTO.setMatricola(stud.get(i).getMatricola());
-			studenteDTO.setIdcorso(stud.get(i).getCorsoIdCorso());
-			studenteDTO.setIndirizzo(utente.getIndirizzo());
+			studenteDTO.setIndirizzo(utente.getIndirizzo());			
 			studDTO.add(i, studenteDTO);
 		}
 		return studDTO;
@@ -75,10 +75,10 @@ public class StudenteRestController {
 	//quello che arriva in id sopra mettilo in id sotto
 	public StudenteDTO getById(@PathVariable("id") int id) throws StudenteNotFoundException, UtenteNotFoundException{
 		Utente utente=new Utente();
-		List<Studente> studente;
-		studente=studenteService.getAll();
-		int idutente=studente.get(id-1).getUtenteIdUtente();
-		utente=utenteService.getById(idutente);
+		Studente studente;
+		studente=studenteService.getById(id);
+		//int idutente=studente.get(id-1).getUtenteIdUtente();
+		utente=utenteService.getById(studente.getUtente().getIdUtente());
 		StudenteDTO studenteDTO = new StudenteDTO();
 		studenteDTO.setName(utente.getNome());
 		studenteDTO.setSurname(utente.getCognome());
@@ -88,13 +88,13 @@ public class StudenteRestController {
 
 	//se è un post si puo usare anche questo tipo di annotation al posto di requestmapping
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Studente post(@RequestBody StudenteDTO studenteDTO) throws ParseException, UtenteNotFoundException, StudenteNotFoundException {
+	public Studente post(@RequestBody StudenteDTO studenteDTO) throws ParseException, UtenteNotFoundException, StudenteNotFoundException, CorsoNotFoundException {
 		DateFormat formatter1;
 		formatter1 = new SimpleDateFormat("yyyy-mm-DD");
-		Studente studente=new Studente();
-		int idutente=utenteService.count()+1;
-		System.out.println(idutente);
 		Utente utente=new Utente();
+		Studente studente=new Studente();
+		//int idutente=utenteService.count()+1;
+		//System.out.println(idutente);
 		utente.setNome(studenteDTO.getName());
 		utente.setCognome(studenteDTO.getSurname());
 		utente.setDatanascita(formatter1.parse(studenteDTO.getData()));
@@ -102,11 +102,12 @@ public class StudenteRestController {
 		utente.setIndirizzo(studenteDTO.getIndirizzo());
 		utente.setPassword(studenteDTO.getPassword());
 		studente.setMatricola(studenteDTO.getMatricola());
-		studente.setCorsoIdCorso(studenteDTO.getIdcorso());
-		studente.setUtenteIdUtente(idutente);
+		studente.setCorso(corsoService.getById(studenteDTO.getIdcorso()));
+		studente.setUtente(utente);
 		utenteService.save(utente);
 		studenteService.save(studente);	
 		return null;
 	}
+
 
 }
