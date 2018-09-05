@@ -80,7 +80,7 @@ public class DocenteRestController {
 		utente.setPassword(docenteDTO.getPassword());
 		utenteService.save(utente);
 		docente.setStipendio(docenteDTO.getStipendio());
-		docente.setUtenteIdUtente(idutente);
+		//docente.setUtenteIdUtente(idutente);
 		docenteService.save(docente);
 		return null;
 	}
