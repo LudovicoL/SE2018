@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,22 +52,23 @@ public class StudenteRestController {
 
 	@RequestMapping(value="/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<StudenteDTO> getAll() throws StudenteNotFoundException, UtenteNotFoundException{;
-		List<Studente> stud = null;
+		List<Studente> studente = null;
 		List<StudenteDTO> studDTO=new ArrayList<StudenteDTO>();
-		stud=(studenteService.getAll());
-		int i;
+		studente=(studenteService.getAll());
 		Utente utente=new Utente();
-		for(i=0;i<stud.size();i++) {
+		Iterator<Studente> student = studente.iterator();
+		while(student.hasNext()) {
 			StudenteDTO studenteDTO= new StudenteDTO();
-			studenteDTO.setMatricola(stud.get(i).getMatricola());
-			studenteDTO.setIdcorso(stud.get(i).getCorso().getIdCorso());
-			utente=stud.get(i).getUtente();
-			studenteDTO.setName(utente.getNome());
-			studenteDTO.setSurname(utente.getCognome());
+			Studente stud=student.next();
+			studenteDTO.setMatricola(stud.getMatricola());
+			studenteDTO.setIdcorso(stud.getCorso().getIdCorso());
+			utente=stud.getUtente();
+			studenteDTO.setNome(utente.getNome());
+			studenteDTO.setCognome(utente.getCognome());
 			studenteDTO.setData(utente.getDatanascita().toString());
 			studenteDTO.setEmail(utente.getEmail());
 			studenteDTO.setIndirizzo(utente.getIndirizzo());			
-			studDTO.add(i, studenteDTO);
+			studDTO.add(studenteDTO);	
 		}
 		return studDTO;
 	}
@@ -77,26 +79,23 @@ public class StudenteRestController {
 		Utente utente=new Utente();
 		Studente studente;
 		studente=studenteService.getById(id);
-		//int idutente=studente.get(id-1).getUtenteIdUtente();
 		utente=utenteService.getById(studente.getUtente().getIdUtente());
 		StudenteDTO studenteDTO = new StudenteDTO();
-		studenteDTO.setName(utente.getNome());
-		studenteDTO.setSurname(utente.getCognome());
+		studenteDTO.setNome(utente.getNome());
+		studenteDTO.setCognome(utente.getCognome());
 		return studenteDTO;
 	}
 	
 
 	//se è un post si puo usare anche questo tipo di annotation al posto di requestmapping
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Studente post(@RequestBody StudenteDTO studenteDTO) throws ParseException, UtenteNotFoundException, StudenteNotFoundException, CorsoNotFoundException {
+	public void post(@RequestBody StudenteDTO studenteDTO) throws ParseException, UtenteNotFoundException, StudenteNotFoundException, CorsoNotFoundException {
 		DateFormat formatter1;
 		formatter1 = new SimpleDateFormat("yyyy-mm-DD");
 		Utente utente=new Utente();
 		Studente studente=new Studente();
-		//int idutente=utenteService.count()+1;
-		//System.out.println(idutente);
-		utente.setNome(studenteDTO.getName());
-		utente.setCognome(studenteDTO.getSurname());
+		utente.setNome(studenteDTO.getNome());
+		utente.setCognome(studenteDTO.getCognome());
 		utente.setDatanascita(formatter1.parse(studenteDTO.getData()));
 		utente.setEmail(studenteDTO.getEmail());
 		utente.setIndirizzo(studenteDTO.getIndirizzo());
@@ -106,7 +105,6 @@ public class StudenteRestController {
 		studente.setUtente(utente);
 		utenteService.save(utente);
 		studenteService.save(studente);	
-		return null;
 	}
 
 

@@ -1,15 +1,15 @@
 package it.unisalento.se.saw.dto;
 
 public class AulaDTO {
-	private String name;
+	private String nome;
 	private String grandezza;
 	private double latitudine;
 	private double longitudine;
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public String getGrandezza() {
 		return grandezza;
@@ -29,4 +29,5 @@ public class AulaDTO {
 	public void setLongitudine(double longitudine) {
 		this.longitudine = longitudine;
 	}
+	
 }
