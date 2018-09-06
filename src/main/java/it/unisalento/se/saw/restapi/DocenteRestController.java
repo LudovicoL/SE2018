@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
 import it.unisalento.se.saw.domain.Docente;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.DocenteDTO;
+import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 
@@ -41,23 +44,23 @@ public class DocenteRestController {
 
 	@RequestMapping(value="/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<DocenteDTO> getAll() throws DocenteNotFoundException, UtenteNotFoundException{;
-		List<Docente> doc = null;
+		List<Docente> docente = null;
 		List<DocenteDTO> docDTO=new ArrayList<DocenteDTO>();
-		doc=(docenteService.getAll());
-
-		int i;
+		docente=(docenteService.getAll());
 		Utente utente=new Utente();
-		for(i=0;i<doc.size();i++) {
+		Iterator<Docente> docent = docente.iterator();
+		while(docent.hasNext()) {
 			DocenteDTO docenteDTO= new DocenteDTO();
-			utente=doc.get(i).getUtente();
+			Docente doc=docent.next();
+			utente=doc.getUtente();
 			utente=utenteService.getById(utente.getIdUtente());
-			docenteDTO.setName(utente.getNome());
-			docenteDTO.setSurname(utente.getCognome());
+			docenteDTO.setNome(utente.getNome());
+			docenteDTO.setCognome(utente.getCognome());
 			docenteDTO.setData(utente.getDatanascita().toString());
 			docenteDTO.setEmail(utente.getEmail());
-			docenteDTO.setStipendio(doc.get(i).getStipendio());
+			docenteDTO.setStipendio(doc.getStipendio());
 			docenteDTO.setIndirizzo(utente.getIndirizzo());
-			docDTO.add(i, docenteDTO);
+			docDTO.add(docenteDTO);
 		}
 		return docDTO;
 	}
@@ -72,15 +75,14 @@ public class DocenteRestController {
 		int idutente=utenteService.count()+1;
 		System.out.println(idutente);
 		Utente utente=new Utente();
-		utente.setNome(docenteDTO.getName());
-		utente.setCognome(docenteDTO.getSurname());
+		utente.setNome(docenteDTO.getNome());
+		utente.setCognome(docenteDTO.getCognome());
 		utente.setDatanascita(formatter1.parse(docenteDTO.getData()));
 		utente.setEmail(docenteDTO.getEmail());
 		utente.setIndirizzo(docenteDTO.getIndirizzo());
 		utente.setPassword(docenteDTO.getPassword());
 		utenteService.save(utente);
 		docente.setStipendio(docenteDTO.getStipendio());
-		//docente.setUtenteIdUtente(idutente);
 		docenteService.save(docente);
 		return null;
 	}
