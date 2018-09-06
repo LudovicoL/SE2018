@@ -1,12 +1,9 @@
 package it.unisalento.se.saw.restapi;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
 import it.unisalento.se.saw.adapter.StudenteAdapter;
@@ -95,6 +91,5 @@ public class StudenteRestController {
 		utenteService.save(utente);
 		studenteService.save(studente);	
 	}
-
-
+	
 }

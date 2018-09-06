@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IAulaService;
 import it.unisalento.se.saw.Iservices.IStrumentoService;
+import it.unisalento.se.saw.adapter.StrumentoAdapter;
 import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.domain.Strumento;
 import it.unisalento.se.saw.dto.StrumentoDTO;
@@ -40,10 +41,8 @@ public class StrumentoRestController {
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void post(@RequestBody StrumentoDTO strumentoDTO) throws StrumentoNotFoundException, AulaNotFoundException {
 		Strumento strumento=new Strumento();
-		strumento.setNome(strumentoDTO.getNome());
 		Aula aula=aulaService.getById(strumentoDTO.getIdAula());
-		strumento.setAgibile(strumentoDTO.getAgibile());
-		strumento.setAula(aula);
+		strumento=StrumentoAdapter.StrumentoDTOToStrumento(strumentoDTO, aula);
 		strumentoService.save(strumento);
 	}
 	
@@ -55,8 +54,7 @@ public class StrumentoRestController {
 		while(strumentoit.hasNext()){
 			Strumento strumento=strumentoit.next();
 			StrumentoDTO strumentoDTO=new StrumentoDTO();
-			strumentoDTO.setNome(strumento.getNome());
-			strumentoDTO.setAgibile(strumento.getAgibile());
+			strumentoDTO=StrumentoAdapter.StrumentoToStrumentoDTO(strumento);
 			strumentiDTO.add(strumentoDTO);
 		}
 		return strumentiDTO;
@@ -67,8 +65,7 @@ public class StrumentoRestController {
 		StrumentoDTO strumentoDTO=new StrumentoDTO();
 		Strumento strumento=new Strumento();
 		strumento=strumentoService.getById(id);
-		strumentoDTO.setNome(strumento.getNome());
-		strumentoDTO.setAgibile(strumento.getAgibile());
+		strumentoDTO=StrumentoAdapter.StrumentoToStrumentoDTO(strumento);
 		return strumentoDTO;
 	}	
 }
