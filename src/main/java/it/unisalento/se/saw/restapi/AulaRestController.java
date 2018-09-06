@@ -3,7 +3,6 @@ package it.unisalento.se.saw.restapi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IAulaService;
+import it.unisalento.se.saw.adapter.AulaAdapter;
 import it.unisalento.se.saw.domain.Aula;
-import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 
@@ -37,10 +36,7 @@ public class AulaRestController {
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void post(@RequestBody AulaDTO aulaDTO) throws AulaNotFoundException {
 		Aula aula=new Aula();
-		aula.setNome(aulaDTO.getNome());
-		aula.setGrandezza(aulaDTO.getGrandezza());
-		aula.setLatitudine(aulaDTO.getLatitudine());
-		aula.setLongitudine(aulaDTO.getLongitudine());
+		aula=AulaAdapter.AulaDTOToAula(aulaDTO);
 		aulaService.save(aula);
 	}
 	
@@ -52,10 +48,7 @@ public class AulaRestController {
 		while(aulait.hasNext()){
 			Aula aula=aulait.next();
 			AulaDTO aulaDTO=new AulaDTO();
-			aulaDTO.setNome(aula.getNome());
-			aulaDTO.setGrandezza(aula.getGrandezza());
-			aulaDTO.setLatitudine(aula.getLatitudine());
-			aulaDTO.setLongitudine(aula.getLongitudine());
+			aulaDTO=AulaAdapter.AulaToAulaDTO(aula);
 			auleDTO.add(aulaDTO);
 		}
 		return auleDTO;
@@ -71,10 +64,7 @@ public class AulaRestController {
 		AulaDTO aulaDTO=new AulaDTO();
 		Aula aula=new Aula();
 		aula=aulaService.getById(id);
-		aulaDTO.setNome(aula.getNome());
-		aulaDTO.setGrandezza(aula.getGrandezza());
-		aulaDTO.setLatitudine(aula.getLatitudine());
-		aulaDTO.setLongitudine(aula.getLongitudine());
+		aulaDTO=AulaAdapter.AulaToAulaDTO(aula);
 		return aulaDTO;
 	}	
 	
