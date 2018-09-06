@@ -3,7 +3,6 @@ package it.unisalento.se.saw.restapi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import it.unisalento.se.saw.Iservices.IAulaService;
 import it.unisalento.se.saw.Iservices.IStrumentoService;
 import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.domain.Strumento;
-import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.dto.StrumentoDTO;
 import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 import it.unisalento.se.saw.exceptions.StrumentoNotFoundException;
-import it.unisalento.se.saw.services.AulaService;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
 @RequestMapping(value="/strumento")

@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
+import it.unisalento.se.saw.adapter.DocenteAdapter;
+import it.unisalento.se.saw.adapter.UtenteAdapter;
 import it.unisalento.se.saw.domain.Docente;
-import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.DocenteDTO;
-import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 
@@ -54,12 +54,7 @@ public class DocenteRestController {
 			Docente doc=docent.next();
 			utente=doc.getUtente();
 			utente=utenteService.getById(utente.getIdUtente());
-			docenteDTO.setNome(utente.getNome());
-			docenteDTO.setCognome(utente.getCognome());
-			docenteDTO.setData(utente.getDatanascita().toString());
-			docenteDTO.setEmail(utente.getEmail());
-			docenteDTO.setStipendio(doc.getStipendio());
-			docenteDTO.setIndirizzo(utente.getIndirizzo());
+			docenteDTO=DocenteAdapter.DocenteToDocenteDTO(doc, utente);
 			docDTO.add(docenteDTO);
 		}
 		return docDTO;
@@ -68,22 +63,12 @@ public class DocenteRestController {
 
 	//se è un post si puo usare anche questo tipo di annotation al posto di requestmapping
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Docente post(@RequestBody DocenteDTO docenteDTO) throws ParseException, UtenteNotFoundException {
-		DateFormat formatter1;
-		formatter1 = new SimpleDateFormat("yyyy-mm-DD");
+	public void post(@RequestBody DocenteDTO docenteDTO) throws ParseException, UtenteNotFoundException {
 		Docente docente=new Docente();
-		int idutente=utenteService.count()+1;
-		System.out.println(idutente);
 		Utente utente=new Utente();
-		utente.setNome(docenteDTO.getNome());
-		utente.setCognome(docenteDTO.getCognome());
-		utente.setDatanascita(formatter1.parse(docenteDTO.getData()));
-		utente.setEmail(docenteDTO.getEmail());
-		utente.setIndirizzo(docenteDTO.getIndirizzo());
-		utente.setPassword(docenteDTO.getPassword());
+		utente=UtenteAdapter.DocenteDTOToUtente(docenteDTO);
 		utenteService.save(utente);
-		docente.setStipendio(docenteDTO.getStipendio());
+		docente=DocenteAdapter.DocenteDTOToDocente(docenteDTO, utente);
 		docenteService.save(docente);
-		return null;
 	}
 }

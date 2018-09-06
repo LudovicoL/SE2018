@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
+import it.unisalento.se.saw.adapter.StudenteAdapter;
+import it.unisalento.se.saw.adapter.UtenteAdapter;
+import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.StudenteDTO;
@@ -60,14 +63,8 @@ public class StudenteRestController {
 		while(student.hasNext()) {
 			StudenteDTO studenteDTO= new StudenteDTO();
 			Studente stud=student.next();
-			studenteDTO.setMatricola(stud.getMatricola());
-			studenteDTO.setIdcorso(stud.getCorso().getIdCorso());
 			utente=stud.getUtente();
-			studenteDTO.setNome(utente.getNome());
-			studenteDTO.setCognome(utente.getCognome());
-			studenteDTO.setData(utente.getDatanascita().toString());
-			studenteDTO.setEmail(utente.getEmail());
-			studenteDTO.setIndirizzo(utente.getIndirizzo());			
+			studenteDTO=StudenteAdapter.StudenteToStudenteDTO(stud, utente);
 			studDTO.add(studenteDTO);	
 		}
 		return studDTO;
@@ -81,8 +78,7 @@ public class StudenteRestController {
 		studente=studenteService.getById(id);
 		utente=utenteService.getById(studente.getUtente().getIdUtente());
 		StudenteDTO studenteDTO = new StudenteDTO();
-		studenteDTO.setNome(utente.getNome());
-		studenteDTO.setCognome(utente.getCognome());
+		studenteDTO=StudenteAdapter.StudenteToStudenteDTO(studente, utente);
 		return studenteDTO;
 	}
 	
@@ -90,19 +86,12 @@ public class StudenteRestController {
 	//se è un post si puo usare anche questo tipo di annotation al posto di requestmapping
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void post(@RequestBody StudenteDTO studenteDTO) throws ParseException, UtenteNotFoundException, StudenteNotFoundException, CorsoNotFoundException {
-		DateFormat formatter1;
-		formatter1 = new SimpleDateFormat("yyyy-mm-DD");
 		Utente utente=new Utente();
 		Studente studente=new Studente();
-		utente.setNome(studenteDTO.getNome());
-		utente.setCognome(studenteDTO.getCognome());
-		utente.setDatanascita(formatter1.parse(studenteDTO.getData()));
-		utente.setEmail(studenteDTO.getEmail());
-		utente.setIndirizzo(studenteDTO.getIndirizzo());
-		utente.setPassword(studenteDTO.getPassword());
-		studente.setMatricola(studenteDTO.getMatricola());
-		studente.setCorso(corsoService.getById(studenteDTO.getIdcorso()));
-		studente.setUtente(utente);
+		Corso corso=new Corso();
+		corso=corsoService.getById(studenteDTO.getIdcorso());
+		utente=UtenteAdapter.StudenteDTOToUtente(studenteDTO);
+		studente=StudenteAdapter.StudenteDTOToStudente(studenteDTO, utente, corso);
 		utenteService.save(utente);
 		studenteService.save(studente);	
 	}

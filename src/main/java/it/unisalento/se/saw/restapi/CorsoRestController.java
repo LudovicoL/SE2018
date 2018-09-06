@@ -3,7 +3,6 @@ package it.unisalento.se.saw.restapi;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -16,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.ICorsoService;
-import it.unisalento.se.saw.domain.Aula;
+import it.unisalento.se.saw.adapter.CorsoAdapter;
 import it.unisalento.se.saw.domain.Corso;
-import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.dto.CorsoDTO;
-import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
@@ -42,10 +39,7 @@ public class CorsoRestController {
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void post(@RequestBody CorsoDTO corsoDTO) throws CorsoNotFoundException {
 		Corso corso=new Corso();
-		corso.setNome(corsoDTO.getNome());
-		corso.setDurata(corsoDTO.getDurata());
-		corso.setFacolta(corsoDTO.getFacolta());
-		corso.setLivello(corsoDTO.getLivello());
+		corso=CorsoAdapter.CorsoDTOToCorso(corsoDTO);
 		corsoService.save(corso);
 	}
 	
@@ -57,10 +51,7 @@ public class CorsoRestController {
 		while(corsoit.hasNext()){
 			Corso corso=corsoit.next();
 			CorsoDTO corsoDTO=new CorsoDTO();
-			corsoDTO.setNome(corso.getNome());
-			corsoDTO.setLivello(corso.getLivello());
-			corsoDTO.setDurata(corso.getDurata());
-			corsoDTO.setFacolta(corso.getFacolta());
+			corsoDTO=CorsoAdapter.CorsoToCorsoDTO(corso);
 			corsiDTO.add(corsoDTO);
 		}
 		return corsiDTO;
@@ -75,10 +66,9 @@ public class CorsoRestController {
 	@GetMapping(value="/getById/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public CorsoDTO getById(@PathVariable("id") int id) throws CorsoNotFoundException{
 		CorsoDTO corsoDto = new CorsoDTO();;
-		corsoDto.setNome(corsoService.getById(id).getNome());
-		corsoDto.setFacolta(corsoService.getById(id).getFacolta());
-		corsoDto.setDurata(corsoService.getById(id).getDurata());
-		corsoDto.setLivello(corsoService.getById(id).getLivello());
+		Corso corso=new Corso();
+		corso=corsoService.getById(id);
+		corsoDto=CorsoAdapter.CorsoToCorsoDTO(corso);
 		return corsoDto;
 	}	
 	
