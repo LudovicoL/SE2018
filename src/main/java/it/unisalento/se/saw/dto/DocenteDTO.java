@@ -1,24 +1,24 @@
 package it.unisalento.se.saw.dto;
 
 public class DocenteDTO {
-	private String name;
-	private String surname;
+	private String nome;
+	private String cognome;
 	private String data;
 	private String email;
 	private String password;
 	private String indirizzo;
 	private int stipendio;
-	public String getName() {
-		return name;
+	public String getNome() {
+		return nome;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getSurname() {
-		return surname;
+	public String getCognome() {
+		return cognome;
 	}
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
 	public String getData() {
 		return data;
@@ -50,4 +50,5 @@ public class DocenteDTO {
 	public void setStipendio(int stipendio) {
 		this.stipendio = stipendio;
 	}
+	
 }
