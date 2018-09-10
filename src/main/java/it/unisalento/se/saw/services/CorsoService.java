@@ -41,8 +41,8 @@ public class CorsoService implements ICorsoService{
 	}
 	
 	@Override
-	public Corso update(Corso corso) {
-		return corsoRepository.update(corso.getNome());
+	public void update(Corso corso) {
+		corsoRepository.update(corso.getNome(), corso.getFacolta(), corso.getDurata(),corso.getLivello(),corso.getIdCorso());
 	}
 
 }

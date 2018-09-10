@@ -1,10 +1,17 @@
 package it.unisalento.se.saw.dto;
 
 public class CorsoDTO {
+	private int idCorso;
 	private String nome;
 	private String facolta;
 	private int durata;
 	private String livello;
+	public int getIdCorso() {
+		return idCorso;
+	}
+	public void setIdCorso(int idCorso) {
+		this.idCorso = idCorso;
+	}
 	public String getNome() {
 		return nome;
 	}

@@ -12,5 +12,5 @@ public interface ICorsoService {
 	public Corso save(Corso corso);
 	public Corso getById(int id) throws CorsoNotFoundException;
 	public int count() throws CorsoNotFoundException;
-	public Corso update(Corso corso);
+	public void update(Corso corso);
 }

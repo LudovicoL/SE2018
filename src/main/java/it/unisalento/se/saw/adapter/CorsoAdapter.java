@@ -15,6 +15,7 @@ public class CorsoAdapter {
 	}
 	public static CorsoDTO CorsoToCorsoDTO(Corso corso){
 		CorsoDTO corsoDTO=new CorsoDTO();
+		corsoDTO.setIdCorso(corso.getIdCorso());
 		corsoDTO.setNome(corso.getNome());
 		corsoDTO.setLivello(corso.getLivello());
 		corsoDTO.setDurata(corso.getDurata());
