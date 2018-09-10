@@ -73,8 +73,8 @@ public class CorsoRestController {
 	}	
 	
 	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public Corso update(@RequestBody Corso corso) throws CorsoNotFoundException {
-		return corsoService.update(corso);
+	public void update(@RequestBody Corso corso) throws CorsoNotFoundException {
+		corsoService.update(corso);
 	}
 	
 
