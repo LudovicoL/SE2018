@@ -44,4 +44,10 @@ public class StrumentoService implements IStrumentoService{
 		return (int) strumentoRepository.count();
 	}
 
+	@Override
+	public void update(Strumento strumento) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

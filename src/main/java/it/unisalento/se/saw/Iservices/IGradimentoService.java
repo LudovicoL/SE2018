@@ -5,7 +5,7 @@ import java.util.List;
 import it.unisalento.se.saw.domain.Gradimento;
 import it.unisalento.se.saw.exceptions.GradimentoNotFoundException;
 
-public class IGradimentoService {
+public interface IGradimentoService {
 	
 	public List<Gradimento> getAll();
 	public Gradimento save(Gradimento gradimento);

@@ -6,10 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Gradimento;
 
-public class GradimentoRepository extends JpaRepository<Gradimento, Integer> {
+public interface GradimentoRepository extends JpaRepository<Gradimento, Integer> {
 	@Modifying
 	@Transactional
 	@Query("update Gradimento g set g.voto=:voto where g.idGradimento=:idGradimento")
