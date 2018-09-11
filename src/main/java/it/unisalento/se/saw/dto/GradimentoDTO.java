@@ -1,6 +1,7 @@
 package it.unisalento.se.saw.dto;
 
 public class GradimentoDTO {
+	private int idGradimento;
 	private int voto;
 	private int idStudente;
 	private int idMateriale;
@@ -10,6 +11,12 @@ public class GradimentoDTO {
 	}
 	public void setVoto(int voto) {
 		this.voto = voto;
+	}
+	public int getIdGradimento() {
+		return idGradimento;
+	}
+	public void setIdGradimento(int idGradimento) {
+		this.idGradimento = idGradimento;
 	}
 	public int getIdStudente() {
 		return idStudente;

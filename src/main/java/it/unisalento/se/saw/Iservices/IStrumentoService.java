@@ -11,4 +11,5 @@ public interface IStrumentoService {
 	public void removeStrumentoById (int id) throws StrumentoNotFoundException;
 	public Strumento getById(int id) throws StrumentoNotFoundException;
 	public int count() throws StrumentoNotFoundException;
+	public void update(Strumento strumento);
 }

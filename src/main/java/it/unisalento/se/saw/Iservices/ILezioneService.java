@@ -11,4 +11,5 @@ public interface ILezioneService {
 	public void removeLezioneById (int id) throws LezioneNotFoundException;
 	public Lezione getById(int id) throws LezioneNotFoundException;
 	public int count() throws LezioneNotFoundException;
+	public void update(Lezione lezione);
 }
