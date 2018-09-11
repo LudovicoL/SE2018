@@ -6,11 +6,8 @@ import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.StudenteDTO;
-import it.unisalento.se.saw.services.CorsoService;
 
 public class StudenteAdapter {
-	@Autowired
-	CorsoService corsoService;
 	
 	public static Studente StudenteDTOToStudente(StudenteDTO studenteDTO,Utente utente,Corso corso){
 		Studente studente=new Studente();

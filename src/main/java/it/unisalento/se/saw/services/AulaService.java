@@ -46,4 +46,10 @@ public class AulaService implements IAulaService{
 		// TODO Auto-generated method stub
 		return (int) aulaRepository.count();
 	}
+
+	@Override
+	public void update(Aula aula) {
+		// TODO Auto-generated method stub
+		
+	}
 }

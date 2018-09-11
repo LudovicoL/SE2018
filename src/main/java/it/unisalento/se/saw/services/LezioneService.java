@@ -43,4 +43,10 @@ public class LezioneService implements ILezioneService{
 		return (int) lezioneRepository.count();
 	}
 
+	@Override
+	public void update(Lezione lezione) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -43,4 +43,10 @@ public class SegnalazioneService implements ISegnalazioneService{
 		return (int) segnalazioneRepository.count();
 	}
 
+	@Override
+	public void update(Segnalazione segnalazione) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

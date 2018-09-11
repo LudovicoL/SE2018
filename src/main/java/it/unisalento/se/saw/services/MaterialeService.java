@@ -3,12 +3,16 @@ package it.unisalento.se.saw.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.IMaterialeService;
+import it.unisalento.se.saw.domain.Docente;
+import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.domain.Materiale;
 import it.unisalento.se.saw.exceptions.MaterialeNotFoundException;
 import it.unisalento.se.saw.repositories.MaterialeRepository;
 
+@Service
 public class MaterialeService implements IMaterialeService{
 	@Autowired
 	MaterialeRepository materialeRepository;
@@ -42,5 +46,13 @@ public class MaterialeService implements IMaterialeService{
 		// TODO Auto-generated method stub
 		return (int) materialeRepository.count();
 	}
+
+	@Override
+	public void update(Materiale materiale) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 
 }
