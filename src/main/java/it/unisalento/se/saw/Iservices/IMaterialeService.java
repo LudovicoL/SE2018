@@ -11,4 +11,5 @@ public interface IMaterialeService {
 	public void removeMaterialeById (int id) throws MaterialeNotFoundException;
 	public Materiale getById(int id) throws MaterialeNotFoundException;
 	public int count() throws MaterialeNotFoundException;
+	public void update(Materiale materiale);
 }

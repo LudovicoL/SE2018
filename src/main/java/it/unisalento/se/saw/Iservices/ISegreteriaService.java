@@ -11,4 +11,5 @@ public interface ISegreteriaService {
 	public void removeSegnalazioneById (int id) throws SegreteriaNotFoundException;
 	public Segreteria getById(int id) throws SegreteriaNotFoundException;
 	public int count() throws SegreteriaNotFoundException;
+	public void update(Segreteria segreteria);
 }
