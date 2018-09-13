@@ -12,7 +12,7 @@ public interface InsegnamentoRepository extends JpaRepository<Insegnamento, Inte
 
 	@Modifying
 	@Transactional
-	@Query("update Insegnamento i set i.nome=:nome, i.cfu=:cfu, i.semestre=:semestre where i.idInsegnamento=:idInsegnamento")
-	public void update(@Param("nome") String nome, @Param("cfu") int cfu, @Param("semestre") int semestre, @Param("idInsegnamento") int idInsegnamento);
+	@Query("update Insegnamento i set i.nome=:nome, i.cfu=:cfu, i.semestre=:semestre, i.abilitazione:=abilitazione where i.idInsegnamento=:idInsegnamento")
+	public void update(@Param("nome") String nome, @Param("cfu") int cfu, @Param("semestre") int semestre, @Param("abilitazione") boolean abilitazione, @Param("idInsegnamento") int idInsegnamento);
 
 }

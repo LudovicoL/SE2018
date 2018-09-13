@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -30,20 +30,23 @@ public class Esame  implements java.io.Serializable {
      private Insegnamento insegnamento;
      private Date data;
      private String tipo;
+     private boolean abilitazione;
 
     public Esame() {
     }
 
 	
-    public Esame(Aula aula, Insegnamento insegnamento) {
+    public Esame(Aula aula, Insegnamento insegnamento, boolean abilitazione) {
         this.aula = aula;
         this.insegnamento = insegnamento;
+        this.abilitazione = abilitazione;
     }
-    public Esame(Aula aula, Insegnamento insegnamento, Date data, String tipo) {
+    public Esame(Aula aula, Insegnamento insegnamento, Date data, String tipo, boolean abilitazione) {
        this.aula = aula;
        this.insegnamento = insegnamento;
        this.data = data;
        this.tipo = tipo;
+       this.abilitazione = abilitazione;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -96,6 +99,16 @@ public class Esame  implements java.io.Serializable {
     
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 

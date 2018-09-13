@@ -8,6 +8,14 @@ public class SegreteriaDTO {
 	private String password;
 	private String indirizzo;
 	private int stipendio;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	
 	public String getName() {
 		return name;

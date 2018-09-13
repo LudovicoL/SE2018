@@ -11,7 +11,7 @@ import it.unisalento.se.saw.domain.Gradimento;
 public interface GradimentoRepository extends JpaRepository<Gradimento, Integer> {
 	@Modifying
 	@Transactional
-	@Query("update Gradimento g set g.voto=:voto where g.idGradimento=:idGradimento")
-	public void update(@Param("voto") int voto, @Param("idGradimento") int idGradimento);
+	@Query("update Gradimento g set g.voto=:voto, g.abilitazione:=abilitazione where g.idGradimento=:idGradimento")
+	public void update(@Param("voto") int voto, @Param("abilitazione") boolean abilitazione, @Param("idGradimento") int idGradimento);
 
 }

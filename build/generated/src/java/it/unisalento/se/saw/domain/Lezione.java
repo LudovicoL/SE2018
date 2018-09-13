@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -32,6 +32,7 @@ public class Lezione  implements java.io.Serializable {
      private Aula aula;
      private Insegnamento insegnamento;
      private Date data;
+     private boolean abilitazione;
      private Set<Gradimento> gradimentos = new HashSet<Gradimento>(0);
      private Set<Materiale> materiales = new HashSet<Materiale>(0);
 
@@ -39,14 +40,16 @@ public class Lezione  implements java.io.Serializable {
     }
 
 	
-    public Lezione(Aula aula, Insegnamento insegnamento) {
+    public Lezione(Aula aula, Insegnamento insegnamento, boolean abilitazione) {
         this.aula = aula;
         this.insegnamento = insegnamento;
+        this.abilitazione = abilitazione;
     }
-    public Lezione(Aula aula, Insegnamento insegnamento, Date data, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
+    public Lezione(Aula aula, Insegnamento insegnamento, Date data, boolean abilitazione, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
        this.aula = aula;
        this.insegnamento = insegnamento;
        this.data = data;
+       this.abilitazione = abilitazione;
        this.gradimentos = gradimentos;
        this.materiales = materiales;
     }
@@ -91,6 +94,16 @@ public class Lezione  implements java.io.Serializable {
     
     public void setData(Date data) {
         this.data = data;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="lezione")

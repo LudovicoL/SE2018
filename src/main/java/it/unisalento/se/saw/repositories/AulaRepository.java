@@ -15,7 +15,7 @@ public interface AulaRepository extends JpaRepository<Aula, Integer>{
 
 	@Modifying
 	@Transactional
-	@Query("update Aula a set a.nome=:nome, a.grandezza=:grandezza, a.latitudine=:latitudine, a.longitudine=:longitudine where a.idAula= :idAula")
-		public void update(@Param("nome") String nome, @Param("grandezza") int grandezza, @Param("latitudine") double latitudine, @Param("longitudine") double longitudine, @Param("idAula") int idAula);
+	@Query("update Aula a set a.nome=:nome, a.grandezza=:grandezza, a.latitudine=:latitudine, a.longitudine=:longitudine a.abilitazione:=abilitazione where a.idAula= :idAula")
+		public void update(@Param("nome") String nome, @Param("grandezza") int grandezza, @Param("latitudine") double latitudine, @Param("longitudine") double longitudine, @Param("abilitazione") boolean abilitazione, @Param("idAula") int idAula);
 
 }

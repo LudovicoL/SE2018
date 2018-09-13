@@ -6,6 +6,14 @@ public class SegnalazioneDTO {
 	private int idStrumento;
 	private int idAula;
 	private int idSegreteria;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getSegnalazione() {
 		return segnalazione;
 	}

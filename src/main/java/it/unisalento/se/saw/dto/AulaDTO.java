@@ -5,6 +5,14 @@ public class AulaDTO {
 	private String grandezza;
 	private double latitudine;
 	private double longitudine;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getNome() {
 		return nome;
 	}
