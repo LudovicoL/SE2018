@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import javax.persistence.Column;
@@ -27,19 +27,22 @@ public class Gradimento  implements java.io.Serializable {
      private Materiale materiale;
      private Studente studente;
      private Integer voto;
+     private boolean abilitazione;
 
     public Gradimento() {
     }
 
 	
-    public Gradimento(Studente studente) {
+    public Gradimento(Studente studente, boolean abilitazione) {
         this.studente = studente;
+        this.abilitazione = abilitazione;
     }
-    public Gradimento(Lezione lezione, Materiale materiale, Studente studente, Integer voto) {
+    public Gradimento(Lezione lezione, Materiale materiale, Studente studente, Integer voto, boolean abilitazione) {
        this.lezione = lezione;
        this.materiale = materiale;
        this.studente = studente;
        this.voto = voto;
+       this.abilitazione = abilitazione;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -92,6 +95,16 @@ public class Gradimento  implements java.io.Serializable {
     
     public void setVoto(Integer voto) {
         this.voto = voto;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 

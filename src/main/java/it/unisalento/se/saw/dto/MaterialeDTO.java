@@ -5,6 +5,14 @@ public class MaterialeDTO {
 	private String percorso;
 	private int idDocente;
 	private int idLezione;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getDescrizione() {
 		return descrizione;
 	}

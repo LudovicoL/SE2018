@@ -4,6 +4,14 @@ public class StrumentoDTO {
 	private String nome;
 	private int agibile;
 	private int idAula;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getNome() {
 		return nome;
 	}

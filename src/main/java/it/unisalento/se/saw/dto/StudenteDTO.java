@@ -9,6 +9,14 @@ public class StudenteDTO {
 	private String indirizzo;
 	private int matricola;
 	private int idcorso;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getNome() {
 		return nome;
 	}

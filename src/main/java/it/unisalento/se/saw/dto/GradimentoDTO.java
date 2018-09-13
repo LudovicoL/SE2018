@@ -6,6 +6,14 @@ public class GradimentoDTO {
 	private int idStudente;
 	private int idMateriale;
 	private int idLezione;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public int getVoto() {
 		return voto;
 	}

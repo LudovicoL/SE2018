@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -33,6 +33,7 @@ public class Utente  implements java.io.Serializable {
      private String indirizzo;
      private String email;
      private String password;
+     private boolean abilitazione;
      private Set<Studente> studentes = new HashSet<Studente>(0);
      private Set<Segreteria> segreterias = new HashSet<Segreteria>(0);
      private Set<Docente> docentes = new HashSet<Docente>(0);
@@ -40,13 +41,18 @@ public class Utente  implements java.io.Serializable {
     public Utente() {
     }
 
-    public Utente(String nome, String cognome, Date datanascita, String indirizzo, String email, String password, Set<Studente> studentes, Set<Segreteria> segreterias, Set<Docente> docentes) {
+	
+    public Utente(boolean abilitazione) {
+        this.abilitazione = abilitazione;
+    }
+    public Utente(String nome, String cognome, Date datanascita, String indirizzo, String email, String password, boolean abilitazione, Set<Studente> studentes, Set<Segreteria> segreterias, Set<Docente> docentes) {
        this.nome = nome;
        this.cognome = cognome;
        this.datanascita = datanascita;
        this.indirizzo = indirizzo;
        this.email = email;
        this.password = password;
+       this.abilitazione = abilitazione;
        this.studentes = studentes;
        this.segreterias = segreterias;
        this.docentes = docentes;
@@ -122,6 +128,16 @@ public class Utente  implements java.io.Serializable {
     
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="utente")
