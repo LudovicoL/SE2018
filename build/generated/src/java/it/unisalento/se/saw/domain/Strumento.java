@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
+// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -28,22 +28,22 @@ public class Strumento  implements java.io.Serializable {
      private Integer idStrumenti;
      private Aula aula;
      private String nome;
-     private Integer agibile;
-     private boolean abilitazione;
+     private Integer funzionante;
+     private int abilitazione;
      private Set<Segnalazione> segnalaziones = new HashSet<Segnalazione>(0);
 
     public Strumento() {
     }
 
 	
-    public Strumento(Aula aula, boolean abilitazione) {
+    public Strumento(Aula aula, int abilitazione) {
         this.aula = aula;
         this.abilitazione = abilitazione;
     }
-    public Strumento(Aula aula, String nome, Integer agibile, boolean abilitazione, Set<Segnalazione> segnalaziones) {
+    public Strumento(Aula aula, String nome, Integer funzionante, int abilitazione, Set<Segnalazione> segnalaziones) {
        this.aula = aula;
        this.nome = nome;
-       this.agibile = agibile;
+       this.funzionante = funzionante;
        this.abilitazione = abilitazione;
        this.segnalaziones = segnalaziones;
     }
@@ -81,22 +81,22 @@ public class Strumento  implements java.io.Serializable {
     }
 
     
-    @Column(name="agibile")
-    public Integer getAgibile() {
-        return this.agibile;
+    @Column(name="funzionante")
+    public Integer getFunzionante() {
+        return this.funzionante;
     }
     
-    public void setAgibile(Integer agibile) {
-        this.agibile = agibile;
+    public void setFunzionante(Integer funzionante) {
+        this.funzionante = funzionante;
     }
 
     
     @Column(name="abilitazione", nullable=false)
-    public boolean isAbilitazione() {
+    public int getAbilitazione() {
         return this.abilitazione;
     }
     
-    public void setAbilitazione(boolean abilitazione) {
+    public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
     }
 
