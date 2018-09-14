@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
+// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -33,7 +33,7 @@ public class Utente  implements java.io.Serializable {
      private String indirizzo;
      private String email;
      private String password;
-     private boolean abilitazione;
+     private int abilitazione;
      private Set<Studente> studentes = new HashSet<Studente>(0);
      private Set<Segreteria> segreterias = new HashSet<Segreteria>(0);
      private Set<Docente> docentes = new HashSet<Docente>(0);
@@ -42,10 +42,10 @@ public class Utente  implements java.io.Serializable {
     }
 
 	
-    public Utente(boolean abilitazione) {
+    public Utente(int abilitazione) {
         this.abilitazione = abilitazione;
     }
-    public Utente(String nome, String cognome, Date datanascita, String indirizzo, String email, String password, boolean abilitazione, Set<Studente> studentes, Set<Segreteria> segreterias, Set<Docente> docentes) {
+    public Utente(String nome, String cognome, Date datanascita, String indirizzo, String email, String password, int abilitazione, Set<Studente> studentes, Set<Segreteria> segreterias, Set<Docente> docentes) {
        this.nome = nome;
        this.cognome = cognome;
        this.datanascita = datanascita;
@@ -132,11 +132,11 @@ public class Utente  implements java.io.Serializable {
 
     
     @Column(name="abilitazione", nullable=false)
-    public boolean isAbilitazione() {
+    public int getAbilitazione() {
         return this.abilitazione;
     }
     
-    public void setAbilitazione(boolean abilitazione) {
+    public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
     }
 
