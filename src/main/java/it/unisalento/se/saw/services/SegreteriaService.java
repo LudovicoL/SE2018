@@ -45,5 +45,11 @@ public class SegreteriaService implements ISegreteriaService{
 		// TODO Auto-generated method stub
 		return (int) segreteriaRepository.count();
 	}
+
+	@Override
+	public void update(Segreteria segreteria) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

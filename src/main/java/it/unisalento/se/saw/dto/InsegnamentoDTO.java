@@ -4,6 +4,14 @@ public class InsegnamentoDTO {
 	private String nome;
 	private int cfu;
 	private int semestre;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getNome() {
 		return nome;
 	}

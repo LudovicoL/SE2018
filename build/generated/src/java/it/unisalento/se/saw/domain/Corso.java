@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -31,17 +31,23 @@ public class Corso  implements java.io.Serializable {
      private String facolta;
      private Integer durata;
      private String livello;
+     private boolean abilitazione;
      private Set<Studente> studentes = new HashSet<Studente>(0);
      private Set<Insegnamento> insegnamentos = new HashSet<Insegnamento>(0);
 
     public Corso() {
     }
 
-    public Corso(String nome, String facolta, Integer durata, String livello, Set<Studente> studentes, Set<Insegnamento> insegnamentos) {
+	
+    public Corso(boolean abilitazione) {
+        this.abilitazione = abilitazione;
+    }
+    public Corso(String nome, String facolta, Integer durata, String livello, boolean abilitazione, Set<Studente> studentes, Set<Insegnamento> insegnamentos) {
        this.nome = nome;
        this.facolta = facolta;
        this.durata = durata;
        this.livello = livello;
+       this.abilitazione = abilitazione;
        this.studentes = studentes;
        this.insegnamentos = insegnamentos;
     }
@@ -96,6 +102,16 @@ public class Corso  implements java.io.Serializable {
     
     public void setLivello(String livello) {
         this.livello = livello;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="corso")

@@ -12,4 +12,5 @@ public interface ISegnalazioneService {
 	public void removeSegnalazioneById (int id) throws SegnalazioneNotFoundException;
 	public Segnalazione getById(int id) throws SegnalazioneNotFoundException;
 	public int count() throws SegnalazioneNotFoundException;
+	public void update(Segnalazione segnalazione);
 }

@@ -11,4 +11,5 @@ public interface IEsameService {
 	public void removeEsameById (int id) throws EsameNotFoundException;
 	public Esame getById(int id) throws EsameNotFoundException;
 	public int count() throws EsameNotFoundException;
+	public void update(Esame esame);
 }

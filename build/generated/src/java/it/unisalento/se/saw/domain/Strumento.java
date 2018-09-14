@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -29,19 +29,22 @@ public class Strumento  implements java.io.Serializable {
      private Aula aula;
      private String nome;
      private Integer agibile;
+     private boolean abilitazione;
      private Set<Segnalazione> segnalaziones = new HashSet<Segnalazione>(0);
 
     public Strumento() {
     }
 
 	
-    public Strumento(Aula aula) {
+    public Strumento(Aula aula, boolean abilitazione) {
         this.aula = aula;
+        this.abilitazione = abilitazione;
     }
-    public Strumento(Aula aula, String nome, Integer agibile, Set<Segnalazione> segnalaziones) {
+    public Strumento(Aula aula, String nome, Integer agibile, boolean abilitazione, Set<Segnalazione> segnalaziones) {
        this.aula = aula;
        this.nome = nome;
        this.agibile = agibile;
+       this.abilitazione = abilitazione;
        this.segnalaziones = segnalaziones;
     }
    
@@ -85,6 +88,16 @@ public class Strumento  implements java.io.Serializable {
     
     public void setAgibile(Integer agibile) {
         this.agibile = agibile;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="strumento")

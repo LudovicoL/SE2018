@@ -43,4 +43,10 @@ public class EsameService implements IEsameService{
 		return (int) esameRepository.count();
 	}
 
+	@Override
+	public void update(Esame esame) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

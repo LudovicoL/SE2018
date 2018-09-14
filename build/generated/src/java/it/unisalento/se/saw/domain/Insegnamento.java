@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 26-ago-2018 11.39.47 by Hibernate Tools 5.2.0.Final
+// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -30,6 +30,8 @@ public class Insegnamento  implements java.io.Serializable {
      private String nome;
      private Integer cfu;
      private Integer semestre;
+     private String anno;
+     private boolean abilitazione;
      private Set<Lezione> leziones = new HashSet<Lezione>(0);
      private Set<Esame> esames = new HashSet<Esame>(0);
      private Set<Corso> corsos = new HashSet<Corso>(0);
@@ -38,10 +40,16 @@ public class Insegnamento  implements java.io.Serializable {
     public Insegnamento() {
     }
 
-    public Insegnamento(String nome, Integer cfu, Integer semestre, Set<Lezione> leziones, Set<Esame> esames, Set<Corso> corsos, Set<Docente> docentes) {
+	
+    public Insegnamento(boolean abilitazione) {
+        this.abilitazione = abilitazione;
+    }
+    public Insegnamento(String nome, Integer cfu, Integer semestre, String anno, boolean abilitazione, Set<Lezione> leziones, Set<Esame> esames, Set<Corso> corsos, Set<Docente> docentes) {
        this.nome = nome;
        this.cfu = cfu;
        this.semestre = semestre;
+       this.anno = anno;
+       this.abilitazione = abilitazione;
        this.leziones = leziones;
        this.esames = esames;
        this.corsos = corsos;
@@ -88,6 +96,26 @@ public class Insegnamento  implements java.io.Serializable {
     
     public void setSemestre(Integer semestre) {
         this.semestre = semestre;
+    }
+
+    
+    @Column(name="anno", length=45)
+    public String getAnno() {
+        return this.anno;
+    }
+    
+    public void setAnno(String anno) {
+        this.anno = anno;
+    }
+
+    
+    @Column(name="abilitazione", nullable=false)
+    public boolean isAbilitazione() {
+        return this.abilitazione;
+    }
+    
+    public void setAbilitazione(boolean abilitazione) {
+        this.abilitazione = abilitazione;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="insegnamento")

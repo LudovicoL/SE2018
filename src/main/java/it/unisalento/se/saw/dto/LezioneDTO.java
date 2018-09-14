@@ -4,6 +4,14 @@ public class LezioneDTO {
 	private String data;
 	private int idInsegnamento;
 	private int idAula;
+	private boolean abilitazione;
+	
+	public boolean isAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(boolean abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	public String getData() {
 		return data;
 	}
