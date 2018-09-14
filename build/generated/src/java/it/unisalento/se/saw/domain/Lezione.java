@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
+// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -32,7 +32,7 @@ public class Lezione  implements java.io.Serializable {
      private Aula aula;
      private Insegnamento insegnamento;
      private Date data;
-     private boolean abilitazione;
+     private int abilitazione;
      private Set<Gradimento> gradimentos = new HashSet<Gradimento>(0);
      private Set<Materiale> materiales = new HashSet<Materiale>(0);
 
@@ -40,12 +40,12 @@ public class Lezione  implements java.io.Serializable {
     }
 
 	
-    public Lezione(Aula aula, Insegnamento insegnamento, boolean abilitazione) {
+    public Lezione(Aula aula, Insegnamento insegnamento, int abilitazione) {
         this.aula = aula;
         this.insegnamento = insegnamento;
         this.abilitazione = abilitazione;
     }
-    public Lezione(Aula aula, Insegnamento insegnamento, Date data, boolean abilitazione, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
+    public Lezione(Aula aula, Insegnamento insegnamento, Date data, int abilitazione, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
        this.aula = aula;
        this.insegnamento = insegnamento;
        this.data = data;
@@ -98,11 +98,11 @@ public class Lezione  implements java.io.Serializable {
 
     
     @Column(name="abilitazione", nullable=false)
-    public boolean isAbilitazione() {
+    public int getAbilitazione() {
         return this.abilitazione;
     }
     
-    public void setAbilitazione(boolean abilitazione) {
+    public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
     }
 

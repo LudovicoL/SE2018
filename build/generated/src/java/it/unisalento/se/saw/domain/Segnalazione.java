@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 13-set-2018 11.31.44 by Hibernate Tools 5.2.0.Final
+// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
 
 
 import javax.persistence.Column;
@@ -28,17 +28,17 @@ public class Segnalazione  implements java.io.Serializable {
      private Segreteria segreteria;
      private Strumento strumento;
      private String descrizione;
-     private boolean abilitazione;
+     private int abilitazione;
 
     public Segnalazione() {
     }
 
 	
-    public Segnalazione(Docente docente, boolean abilitazione) {
+    public Segnalazione(Docente docente, int abilitazione) {
         this.docente = docente;
         this.abilitazione = abilitazione;
     }
-    public Segnalazione(Aula aula, Docente docente, Segreteria segreteria, Strumento strumento, String descrizione, boolean abilitazione) {
+    public Segnalazione(Aula aula, Docente docente, Segreteria segreteria, Strumento strumento, String descrizione, int abilitazione) {
        this.aula = aula;
        this.docente = docente;
        this.segreteria = segreteria;
@@ -111,11 +111,11 @@ public class Segnalazione  implements java.io.Serializable {
 
     
     @Column(name="abilitazione", nullable=false)
-    public boolean isAbilitazione() {
+    public int getAbilitazione() {
         return this.abilitazione;
     }
     
-    public void setAbilitazione(boolean abilitazione) {
+    public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
     }
 

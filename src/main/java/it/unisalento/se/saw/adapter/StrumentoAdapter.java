@@ -8,16 +8,18 @@ public class StrumentoAdapter {
 	public static Strumento StrumentoDTOToStrumento(StrumentoDTO strumentoDTO, Aula aula) {
 		Strumento strumento=new Strumento();
 		strumento.setNome(strumentoDTO.getNome());
-		strumento.setAgibile(strumentoDTO.getAgibile());
+		strumento.setFunzionante(strumentoDTO.getFunzionante());
 		strumento.setAula(aula);
+		strumento.setAbilitazione(strumentoDTO.getAbilitazione());
 		return strumento;
 	}
 	
 	public static StrumentoDTO StrumentoToStrumentoDTO(Strumento strumento) {
 		StrumentoDTO strumentoDTO=new StrumentoDTO();
 		strumentoDTO.setNome(strumento.getNome());
-		strumentoDTO.setAgibile(strumento.getAgibile());
+		strumentoDTO.setFunzionante(strumento.getFunzionante());
 		strumentoDTO.setIdAula(strumento.getAula().getIdAula());
+		strumentoDTO.setAbilitazione(strumento.getAbilitazione());
 		return strumentoDTO;
 	}	
 	

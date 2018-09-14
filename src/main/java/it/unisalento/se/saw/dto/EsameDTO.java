@@ -5,12 +5,12 @@ public class EsameDTO {
 	private String tipo;
 	private int idInsegnamento;
 	private int idAula;
-	private boolean abilitazione;
+	private int abilitazione;
 	
-	public boolean isAbilitazione() {
+	public int getAbilitazione() {
 		return abilitazione;
 	}
-	public void setAbilitazione(boolean abilitazione) {
+	public void setAbilitazione(int abilitazione) {
 		this.abilitazione = abilitazione;
 	}
 	public String getData() {

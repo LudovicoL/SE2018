@@ -3,12 +3,12 @@ package it.unisalento.se.saw.dto;
 public class UtenteDTO {
 	private String name;
 	private String surname;
-	private boolean abilitazione;
+	private int abilitazione;
 	
-	public boolean isAbilitazione() {
+	public int getAbilitazione() {
 		return abilitazione;
 	}
-	public void setAbilitazione(boolean abilitazione) {
+	public void setAbilitazione(int abilitazione) {
 		this.abilitazione = abilitazione;
 	}
 	

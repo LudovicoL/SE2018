@@ -6,7 +6,14 @@ public class CorsoDTO {
 	private String facolta;
 	private int durata;
 	private String livello;
-	private boolean abilitazione;
+	private int abilitazione;
+	
+	public int getAbilitazione() {
+		return abilitazione;
+	}
+	public void setAbilitazione(int abilitazione) {
+		this.abilitazione = abilitazione;
+	}
 	
 	public int getIdCorso() {
 		return idCorso;
@@ -37,11 +44,5 @@ public class CorsoDTO {
 	}
 	public void setLivello(String livello) {
 		this.livello = livello;
-	}
-	public boolean isAbilitazione() {
-		return abilitazione;
-	}
-	public void setAbilitazione(boolean abilitazione) {
-		this.abilitazione = abilitazione;
 	}
 }
