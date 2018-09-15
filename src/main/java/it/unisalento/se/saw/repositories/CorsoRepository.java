@@ -11,6 +11,6 @@ import it.unisalento.se.saw.domain.Corso;
 public interface CorsoRepository extends JpaRepository<Corso, Integer>{
     @Modifying
     @Transactional
-	@Query("update Corso c set c.nome=:nome, c.facolta=:facolta, c.durata=:durata, c.livello=:livello, c.abilitazione:=abilitazione where c.idCorso=:idCorso")
+	@Query("update Corso c set c.nome=:nome, c.facolta=:facolta, c.durata=:durata, c.livello=:livello, c.abilitazione=:abilitazione where c.idCorso=:idCorso")
 	public void update(@Param("nome") String nome, @Param("facolta") String facolta, @Param("durata") int durata, @Param("livello") String livello, @Param("abilitazione") int abilitazione, @Param("idCorso") int idCorso);
 }

@@ -15,6 +15,7 @@ public class AulaAdapter {
 	
 	public static AulaDTO AulaToAulaDTO(Aula aula) {
 		AulaDTO aulaDTO=new AulaDTO();
+		aulaDTO.setIdAula(aula.getIdAula());
 		aulaDTO.setNome(aula.getNome());
 		aulaDTO.setGrandezza(aula.getGrandezza());
 		aulaDTO.setLatitudine(aula.getLatitudine());

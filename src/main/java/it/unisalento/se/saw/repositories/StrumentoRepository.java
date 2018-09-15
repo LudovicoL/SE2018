@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Strumento;
 
 public interface StrumentoRepository extends JpaRepository<Strumento, Integer>{
-
+/*
 	@Modifying
 	@Transactional
-	@Query("update Strumento s set s.nome=:nome, s.agibile=:agibile, s.Aula_idAula=:Aula_idAula, s.abilitazione:=abilitazione where s.idStrumento=:idStrumento")
-	public void update(@Param("nome") String nome, @Param("agibile") int agibile, @Param("Aula_idAula") int Aula_idAula, @Param("abilitazione") boolean abilitazione, @Param("idStrumento") int idStrumento);
-
+	@Query("update Strumento s set s.nome=:nome, s.agibile=:agibile, s.Aula_idAula=:Aula_idAula, s.funzionante=:funzionante where s.idStrumento=:idStrumento")
+	public void update(@Param("nome") String nome, @Param("agibile") int agibile, @Param("Aula_idAula") int Aula_idAula, @Param("funzionante") int abilitazione, @Param("idStrumento") int idStrumento);
+*/
 }

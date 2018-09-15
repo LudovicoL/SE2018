@@ -16,6 +16,7 @@ public class StrumentoAdapter {
 	
 	public static StrumentoDTO StrumentoToStrumentoDTO(Strumento strumento) {
 		StrumentoDTO strumentoDTO=new StrumentoDTO();
+		strumentoDTO.setIdStrumento(strumento.getIdStrumenti());
 		strumentoDTO.setNome(strumento.getNome());
 		strumentoDTO.setFunzionante(strumento.getFunzionante());
 		strumentoDTO.setIdAula(strumento.getAula().getIdAula());

@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Esame;
 
 public interface EsameRepository extends JpaRepository<Esame, Integer>{
-
+/*
 	@Modifying
 	@Transactional
-	@Query("update Esame e set e.data=:data, e.tipo=:tipo, e.Insegnamento_idInsegnamento=:Insegnamento_idInsegnamento, e.Aula_idAula=:Aula_idAula, e.abilitazione:=abilitazione where e.idEsame=:idEsame")
-	public void update(@Param("data") String data, @Param("tipo") String tipo, @Param("Insegnamento_idInsegnamento") int Insegnamento_idInsegnamento, @Param("Aula_idAula") int Aula_idAula, @Param("abilitazione") boolean abilitazione, @Param("idEsame") int idEsame);
-
+	@Query("update Esame e set e.data=:data, e.tipo=:tipo, e.Insegnamento_idInsegnamento=:Insegnamento_idInsegnamento, e.Aula_idAula=:Aula_idAula, e.abilitazione=:abilitazione where e.idEsame=:idEsame")
+	public void update(@Param("data") String data, @Param("tipo") String tipo, @Param("Insegnamento_idInsegnamento") int Insegnamento_idInsegnamento, @Param("Aula_idAula") int Aula_idAula, @Param("abilitazione") int abilitazione, @Param("idEsame") int idEsame);
+*/
 }
