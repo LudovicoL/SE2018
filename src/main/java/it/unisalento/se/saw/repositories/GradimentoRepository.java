@@ -14,4 +14,5 @@ public interface GradimentoRepository extends JpaRepository<Gradimento, Integer>
 	@Query("update Gradimento g set g.voto=:voto, g.abilitazione=:abilitazione where g.idGradimento=:idGradimento")
 	public void update(@Param("voto") int voto, @Param("abilitazione") int abilitazione, @Param("idGradimento") int idGradimento);
 */
+	
 }
