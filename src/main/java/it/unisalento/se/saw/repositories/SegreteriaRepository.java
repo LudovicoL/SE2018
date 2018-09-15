@@ -9,11 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Segreteria;
 
 public interface SegreteriaRepository extends JpaRepository<Segreteria, Integer>{
-	
+	/*
 	@Modifying
 	@Transactional
-	@Query("update Segreteria s set s.stipendio=:stipendio, s.Utente_idUtente=:Utente_idUtente, s.abilitazione:=abilitazione where s.idSegreteria=:idSegreteria")
-	public void update(@Param("stipendio") int stipendio, @Param("Utente_idUtente") int Utente_idUtente, @Param("abilitazione") boolean abilitazione, @Param("idSegreteria") int idSegreteria);
-
+	@Query("update Segreteria s set s.stipendio=:stipendio, s.Utente_idUtente=:Utente_idUtente, s.abilitazione=:abilitazione where s.idSegreteria=:idSegreteria")
+	public void update(@Param("stipendio") int stipendio, @Param("Utente_idUtente") int Utente_idUtente, @Param("abilitazione") int abilitazione, @Param("idSegreteria") int idSegreteria);
+*/
 
 }
