@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
+// Generated 18-set-2018 10.14.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -10,9 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -32,8 +29,8 @@ public class Corso  implements java.io.Serializable {
      private Integer durata;
      private String livello;
      private int abilitazione;
-     private Set<Studente> studentes = new HashSet<Studente>(0);
      private Set<Insegnamento> insegnamentos = new HashSet<Insegnamento>(0);
+     private Set<Studente> studentes = new HashSet<Studente>(0);
 
     public Corso() {
     }
@@ -42,14 +39,14 @@ public class Corso  implements java.io.Serializable {
     public Corso(int abilitazione) {
         this.abilitazione = abilitazione;
     }
-    public Corso(String nome, String facolta, Integer durata, String livello, int abilitazione, Set<Studente> studentes, Set<Insegnamento> insegnamentos) {
+    public Corso(String nome, String facolta, Integer durata, String livello, int abilitazione, Set<Insegnamento> insegnamentos, Set<Studente> studentes) {
        this.nome = nome;
        this.facolta = facolta;
        this.durata = durata;
        this.livello = livello;
        this.abilitazione = abilitazione;
-       this.studentes = studentes;
        this.insegnamentos = insegnamentos;
+       this.studentes = studentes;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -115,24 +112,21 @@ public class Corso  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="corso")
-    public Set<Studente> getStudentes() {
-        return this.studentes;
-    }
-    
-    public void setStudentes(Set<Studente> studentes) {
-        this.studentes = studentes;
-    }
-
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="corso_has_insegnamento", catalog="mydb", joinColumns = { 
-        @JoinColumn(name="Corso_idCorso", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="Insegnamento_idInsegnamento", nullable=false, updatable=false) })
     public Set<Insegnamento> getInsegnamentos() {
         return this.insegnamentos;
     }
     
     public void setInsegnamentos(Set<Insegnamento> insegnamentos) {
         this.insegnamentos = insegnamentos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="corso")
+    public Set<Studente> getStudentes() {
+        return this.studentes;
+    }
+    
+    public void setStudentes(Set<Studente> studentes) {
+        this.studentes = studentes;
     }
 
 

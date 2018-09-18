@@ -1,18 +1,17 @@
 package it.unisalento.se.saw.domain;
-// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
+// Generated 18-set-2018 10.14.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -26,7 +25,9 @@ import javax.persistence.Table;
 public class Insegnamento  implements java.io.Serializable {
 
 
-     private Integer idInsegnamento;
+     private InsegnamentoId id;
+     private Corso corso;
+     private Docente docente;
      private String nome;
      private Integer cfu;
      private Integer semestre;
@@ -34,17 +35,21 @@ public class Insegnamento  implements java.io.Serializable {
      private int abilitazione;
      private Set<Lezione> leziones = new HashSet<Lezione>(0);
      private Set<Esame> esames = new HashSet<Esame>(0);
-     private Set<Corso> corsos = new HashSet<Corso>(0);
-     private Set<Docente> docentes = new HashSet<Docente>(0);
 
     public Insegnamento() {
     }
 
 	
-    public Insegnamento(int abilitazione) {
+    public Insegnamento(InsegnamentoId id, Corso corso, Docente docente, int abilitazione) {
+        this.id = id;
+        this.corso = corso;
+        this.docente = docente;
         this.abilitazione = abilitazione;
     }
-    public Insegnamento(String nome, Integer cfu, Integer semestre, Integer anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames, Set<Corso> corsos, Set<Docente> docentes) {
+    public Insegnamento(InsegnamentoId id, Corso corso, Docente docente, String nome, Integer cfu, Integer semestre, Integer anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames) {
+       this.id = id;
+       this.corso = corso;
+       this.docente = docente;
        this.nome = nome;
        this.cfu = cfu;
        this.semestre = semestre;
@@ -52,20 +57,40 @@ public class Insegnamento  implements java.io.Serializable {
        this.abilitazione = abilitazione;
        this.leziones = leziones;
        this.esames = esames;
-       this.corsos = corsos;
-       this.docentes = docentes;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @EmbeddedId
 
     
-    @Column(name="idInsegnamento", unique=true, nullable=false)
-    public Integer getIdInsegnamento() {
-        return this.idInsegnamento;
+    @AttributeOverrides( {
+        @AttributeOverride(name="idInsegnamento", column=@Column(name="idInsegnamento", nullable=false) ), 
+        @AttributeOverride(name="corsoIdCorso", column=@Column(name="Corso_idCorso", nullable=false) ) } )
+    public InsegnamentoId getId() {
+        return this.id;
     }
     
-    public void setIdInsegnamento(Integer idInsegnamento) {
-        this.idInsegnamento = idInsegnamento;
+    public void setId(InsegnamentoId id) {
+        this.id = id;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="Corso_idCorso", nullable=false, insertable=false, updatable=false)
+    public Corso getCorso() {
+        return this.corso;
+    }
+    
+    public void setCorso(Corso corso) {
+        this.corso = corso;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="Docente_idDocente", nullable=false)
+    public Docente getDocente() {
+        return this.docente;
+    }
+    
+    public void setDocente(Docente docente) {
+        this.docente = docente;
     }
 
     
@@ -99,7 +124,7 @@ public class Insegnamento  implements java.io.Serializable {
     }
 
     
-    @Column(name="anno", length=45)
+    @Column(name="anno")
     public Integer getAnno() {
         return this.anno;
     }
@@ -134,30 +159,6 @@ public class Insegnamento  implements java.io.Serializable {
     
     public void setEsames(Set<Esame> esames) {
         this.esames = esames;
-    }
-
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="corso_has_insegnamento", catalog="mydb", joinColumns = { 
-        @JoinColumn(name="Insegnamento_idInsegnamento", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="Corso_idCorso", nullable=false, updatable=false) })
-    public Set<Corso> getCorsos() {
-        return this.corsos;
-    }
-    
-    public void setCorsos(Set<Corso> corsos) {
-        this.corsos = corsos;
-    }
-
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="docente_has_insegnamento", catalog="mydb", joinColumns = { 
-        @JoinColumn(name="Insegnamento_idInsegnamento", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="Docente_idDocente", nullable=false, updatable=false) })
-    public Set<Docente> getDocentes() {
-        return this.docentes;
-    }
-    
-    public void setDocentes(Set<Docente> docentes) {
-        this.docentes = docentes;
     }
 
 
