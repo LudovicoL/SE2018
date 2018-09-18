@@ -1,15 +1,15 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 10.14.44 by Hibernate Tools 5.2.0.Final
+// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Insegnamento  implements java.io.Serializable {
 
 
-     private Integer id;
+     private Integer idInsegnamento;
      private Corso corso;
      private Docente docente;
      private String nome;
@@ -57,22 +57,20 @@ public class Insegnamento  implements java.io.Serializable {
        this.esames = esames;
     }
    
-     @EmbeddedId
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="idInsegnamento", column=@Column(name="idInsegnamento", nullable=false) ), 
-        @AttributeOverride(name="corsoIdCorso", column=@Column(name="Corso_idCorso", nullable=false) ) } )
-    public Integer getId() {
-        return this.id;
+    @Column(name="idInsegnamento", unique=true, nullable=false)
+    public Integer getIdInsegnamento() {
+        return this.idInsegnamento;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdInsegnamento(Integer idInsegnamento) {
+        this.idInsegnamento = idInsegnamento;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Corso_idCorso", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="Corso_idCorso", nullable=false)
     public Corso getCorso() {
         return this.corso;
     }
