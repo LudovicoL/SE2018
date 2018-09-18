@@ -21,6 +21,8 @@ public class DocenteAdapter {
 		docenteDTO.setEmail(utente.getEmail());
 		docenteDTO.setStipendio(docente.getStipendio());
 		docenteDTO.setIndirizzo(utente.getIndirizzo());
+		docenteDTO.setIdDocente(docente.getIdDocente());
+		docenteDTO.setIdUtente(utente.getIdUtente());
 		return docenteDTO;
 	}
 

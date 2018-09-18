@@ -21,6 +21,7 @@ import it.unisalento.se.saw.domain.Strumento;
 import it.unisalento.se.saw.dto.StrumentoDTO;
 import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 import it.unisalento.se.saw.exceptions.StrumentoNotFoundException;
+import it.unisalento.se.saw.repositories.AulaRepository;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
 @RequestMapping(value="/strumento")
@@ -48,7 +49,7 @@ public class StrumentoRestController {
 	}
 	
 	@RequestMapping(value="/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<StrumentoDTO> getAll() throws StrumentoNotFoundException {
+	public List<StrumentoDTO> getAll() throws StrumentoNotFoundException, AulaNotFoundException {
 		List<StrumentoDTO> strumentiDTO=new ArrayList<StrumentoDTO>();
 		List<Strumento> strumenti=strumentoService.getAll();
 		Iterator<Strumento> strumentoit=strumenti.iterator();
@@ -56,6 +57,7 @@ public class StrumentoRestController {
 			Strumento strumento=strumentoit.next();
 			StrumentoDTO strumentoDTO=new StrumentoDTO();
 			strumentoDTO=StrumentoAdapter.StrumentoToStrumentoDTO(strumento);
+			strumentoDTO.setNomeaula(aulaService.getById(strumentoDTO.getIdAula()).getNome());
 			strumentiDTO.add(strumentoDTO);
 		}
 		return strumentiDTO;
@@ -71,8 +73,10 @@ public class StrumentoRestController {
 	}
 	
 	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void update(@RequestBody Strumento strumento) throws StrumentoNotFoundException {
-		strumentoService.update(strumento);
+	public void update(@RequestBody StrumentoDTO strumentoDTO){
+		//Aula aula=aulaService.getById(strumentoDTO.getIdAula());
+		//Strumento strumento=StrumentoAdapter.StrumentoDTOToStrumento(strumentoDTO, aula);
+		strumentoService.update(strumentoDTO);
 	}
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.IStrumentoService;
 import it.unisalento.se.saw.domain.Strumento;
+import it.unisalento.se.saw.dto.StrumentoDTO;
 import it.unisalento.se.saw.exceptions.StrumentoNotFoundException;
 import it.unisalento.se.saw.repositories.StrumentoRepository;
 @Service
@@ -45,8 +46,9 @@ public class StrumentoService implements IStrumentoService{
 	}
 
 	@Override
-	public void update(Strumento strumento) {
+	public void update(StrumentoDTO strumentoDTO) {
 		// TODO Auto-generated method stub
+		strumentoRepository.update(strumentoDTO.getNome(), strumentoDTO.getFunzionante(), strumentoDTO.getAbilitazione(), strumentoDTO.getIdStrumento());
 		
 	}
 

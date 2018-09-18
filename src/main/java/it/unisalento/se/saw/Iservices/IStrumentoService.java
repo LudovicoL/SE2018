@@ -3,6 +3,7 @@ package it.unisalento.se.saw.Iservices;
 import java.util.List;
 
 import it.unisalento.se.saw.domain.Strumento;
+import it.unisalento.se.saw.dto.StrumentoDTO;
 import it.unisalento.se.saw.exceptions.StrumentoNotFoundException;
 
 public interface IStrumentoService {
@@ -11,5 +12,5 @@ public interface IStrumentoService {
 	public void removeStrumentoById (int id) throws StrumentoNotFoundException;
 	public Strumento getById(int id) throws StrumentoNotFoundException;
 	public int count() throws StrumentoNotFoundException;
-	public void update(Strumento strumento);
+	public void update(StrumentoDTO strumentoDTO);
 }

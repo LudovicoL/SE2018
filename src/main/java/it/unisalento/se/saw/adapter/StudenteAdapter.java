@@ -26,6 +26,7 @@ public class StudenteAdapter {
 		studenteDTO.setData(utente.getDatanascita().toString());
 		studenteDTO.setEmail(utente.getEmail());
 		studenteDTO.setIndirizzo(utente.getIndirizzo());	
+		studenteDTO.setIdUtente(utente.getIdUtente());
 		return studenteDTO;
 	}
 

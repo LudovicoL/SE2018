@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +18,11 @@ import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
 import it.unisalento.se.saw.adapter.DocenteAdapter;
 import it.unisalento.se.saw.adapter.UtenteAdapter;
+import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.DocenteDTO;
+import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 
@@ -70,5 +73,11 @@ public class DocenteRestController {
 		utenteService.save(utente);
 		docente=DocenteAdapter.DocenteDTOToDocente(docenteDTO, utente);
 		docenteService.save(docente);
+	}
+	
+	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void update(@RequestBody DocenteDTO docenteDTO) {
+		docenteService.update1(docenteDTO);
+		docenteService.update2(docenteDTO);
 	}
 }

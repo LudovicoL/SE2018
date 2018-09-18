@@ -49,7 +49,7 @@ public class AulaService implements IAulaService{
 
 	@Override
 	public void update(Aula aula) {
-		aulaRepository.update(aula.getNome(), aula.getGrandezza(), aula.getLatitudine(), aula.getLongitudine(), aula.getAbilitazione(), aula.getIdAula());
+		aulaRepository.update(aula.getGrandezza(),aula.getIdAula());
 		// TODO Auto-generated method stub
 		
 	}

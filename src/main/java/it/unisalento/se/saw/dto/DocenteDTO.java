@@ -1,6 +1,7 @@
 package it.unisalento.se.saw.dto;
 
 public class DocenteDTO {
+	private int idDocente;
 	private String nome;
 	private String cognome;
 	private String data;
@@ -9,6 +10,8 @@ public class DocenteDTO {
 	private String indirizzo;
 	private int stipendio;
 	private int abilitazione;
+	private int idUtente;
+
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -57,6 +60,18 @@ public class DocenteDTO {
 	}
 	public void setStipendio(int stipendio) {
 		this.stipendio = stipendio;
+	}
+	public int getIdDocente() {
+		return idDocente;
+	}
+	public void setIdDocente(int idDocente) {
+		this.idDocente = idDocente;
+	}
+	public int getIdUtente() {
+		return idUtente;
+	}
+	public void setIdUtente(int idUtente) {
+		this.idUtente = idUtente;
 	}
 	
 }
