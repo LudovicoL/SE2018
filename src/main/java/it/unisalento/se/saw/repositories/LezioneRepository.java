@@ -9,9 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Lezione;
 
 public interface LezioneRepository extends JpaRepository<Lezione, Integer>{
-
+/*
 	@Modifying
 	@Transactional
-	@Query("update Lezione l set l.data=:data, l.Insegnamento_idInsegnamento=:Insegnamento_idInsegnamento, l.Aula_idAula=:Aula_idAula, l.abilitazione:=abilitazione where l.idLezione=:idLezione")
-	public void update(@Param("data") String data, @Param("Insegnamento_idInsegnamento") int Insegnamento_idInsegnamento, @Param("Aula_idAula") int Aula_idAula, @Param("abilitazione") boolean abilitazione, @Param("idLezione") int idLezione);
+	@Query("update Lezione l set l.data=:data, l.Insegnamento_idInsegnamento=:Insegnamento_idInsegnamento, l.Aula_idAula=:Aula_idAula, l.abilitazione=:abilitazione where l.idLezione=:idLezione")
+	public void update(@Param("data") String data, @Param("Insegnamento_idInsegnamento") int Insegnamento_idInsegnamento, @Param("Aula_idAula") int Aula_idAula, @Param("abilitazione") int abilitazione, @Param("idLezione") int idLezione);
+*/
 }

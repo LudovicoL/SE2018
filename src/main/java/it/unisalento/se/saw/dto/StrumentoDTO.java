@@ -1,10 +1,12 @@
 package it.unisalento.se.saw.dto;
 
 public class StrumentoDTO {
+	private int idStrumento;
 	private String nome;
 	private int funzionante;
 	private int idAula;
 	private int abilitazione;
+	private String nomeaula;
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -29,5 +31,17 @@ public class StrumentoDTO {
 	}
 	public void setFunzionante(int funzionante) {
 		this.funzionante = funzionante;
+	}
+	public int getIdStrumento() {
+		return idStrumento;
+	}
+	public void setIdStrumento(int idStrumento) {
+		this.idStrumento = idStrumento;
+	}
+	public String getNomeaula() {
+		return nomeaula;
+	}
+	public void setNomeaula(String nomeaula) {
+		this.nomeaula = nomeaula;
 	}
 }

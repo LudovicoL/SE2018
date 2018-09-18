@@ -3,12 +3,13 @@ package it.unisalento.se.saw.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.IEsameService;
 import it.unisalento.se.saw.domain.Esame;
 import it.unisalento.se.saw.exceptions.EsameNotFoundException;
 import it.unisalento.se.saw.repositories.EsameRepository;
-
+@Service
 public class EsameService implements IEsameService{
 	@Autowired
 	EsameRepository esameRepository;

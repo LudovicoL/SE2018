@@ -1,6 +1,7 @@
 package it.unisalento.se.saw.dto;
 
 public class AulaDTO {
+	private int idAula;
 	private String nome;
 	private String grandezza;
 	private double latitudine;
@@ -36,6 +37,12 @@ public class AulaDTO {
 	}
 	public void setLongitudine(double longitudine) {
 		this.longitudine = longitudine;
+	}
+	public int getIdAula() {
+		return idAula;
+	}
+	public void setIdAula(int idAula) {
+		this.idAula = idAula;
 	}
 	
 }

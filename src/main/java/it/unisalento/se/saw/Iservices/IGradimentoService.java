@@ -6,11 +6,11 @@ import it.unisalento.se.saw.domain.Gradimento;
 import it.unisalento.se.saw.exceptions.GradimentoNotFoundException;
 
 public interface IGradimentoService {
-	
+
 	public List<Gradimento> getAll();
 	public Gradimento save(Gradimento gradimento);
-	public Gradimento getById(int id) throws GradimentoNotFoundException;
-	public int count() throws GradimentoNotFoundException;
-	public void update(Gradimento gradimento);
+	public Gradimento getById(int id) ;
+	public int count();
+	//public void update(Gradimento gradimento);
 
 }
