@@ -16,7 +16,7 @@ public class InsegnamentoService implements IInsegnamentoService{
 	InsegnamentoRepository insegnamentoRepository;
 	
 	@Override
-	public List<Insegnamento> getAll() throws InsegnamentoNotFoundException {
+	public List<InsegnamentoDTO> getAll() throws InsegnamentoNotFoundException {
 		// TODO Auto-generated method stub
 		return insegnamentoRepository.findAll();
 	}

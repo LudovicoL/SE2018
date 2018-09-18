@@ -30,7 +30,7 @@ public class Insegnamento  implements java.io.Serializable {
      private String nome;
      private Integer cfu;
      private Integer semestre;
-     private String anno;
+     private Integer anno;
      private int abilitazione;
      private Set<Lezione> leziones = new HashSet<Lezione>(0);
      private Set<Esame> esames = new HashSet<Esame>(0);
@@ -44,7 +44,7 @@ public class Insegnamento  implements java.io.Serializable {
     public Insegnamento(int abilitazione) {
         this.abilitazione = abilitazione;
     }
-    public Insegnamento(String nome, Integer cfu, Integer semestre, String anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames, Set<Corso> corsos, Set<Docente> docentes) {
+    public Insegnamento(String nome, Integer cfu, Integer semestre, Integer anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames, Set<Corso> corsos, Set<Docente> docentes) {
        this.nome = nome;
        this.cfu = cfu;
        this.semestre = semestre;
@@ -100,11 +100,11 @@ public class Insegnamento  implements java.io.Serializable {
 
     
     @Column(name="anno", length=45)
-    public String getAnno() {
+    public Integer getAnno() {
         return this.anno;
     }
     
-    public void setAnno(String anno) {
+    public void setAnno(Integer anno) {
         this.anno = anno;
     }
 
