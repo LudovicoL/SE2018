@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
+import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.repositories.StudenteRepository;
 import it.unisalento.se.saw.repositories.UtenteRepository;
@@ -43,6 +44,11 @@ public class StudenteService implements IStudenteService{
 	public Studente save(Studente studente) {
 		// TODO Auto-generated method stub
 		return studenteRepository.save(studente);
+	}
+	
+	@Override
+	public void update(StudenteDTO studenteDTO) {
+		studenteRepository.update(studenteDTO.getIdUtente(),studenteDTO.getEmail(),studenteDTO.getIndirizzo());
 	}
 	
 	
