@@ -7,11 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unisalento.se.saw.Iservices.ICorsoService;
+import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IInsegnamentoService;
+import it.unisalento.se.saw.adapter.InsegnamentoAdapter;
 import it.unisalento.se.saw.domain.Corso;
+import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
+import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.InsegnamentoNotFoundException;
 import it.unisalento.se.saw.repositories.CorsoRepository;
 import it.unisalento.se.saw.services.CorsoService;
@@ -24,6 +28,8 @@ public class InsegnamentoRestController {
 	IInsegnamentoService insegnamentoService;
 	@Autowired
 	ICorsoService corsoService;
+	@Autowired
+	IDocenteService docenteService;
 	
 	public InsegnamentoRestController() {
 		super();
@@ -35,11 +41,11 @@ public class InsegnamentoRestController {
 	
 	
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void post(@RequestBody InsegnamentoDTO insegnamentoDTO) throws InsegnamentoNotFoundException, CorsoNotFoundException {
+	public void post(@RequestBody InsegnamentoDTO insegnamentoDTO) throws InsegnamentoNotFoundException, CorsoNotFoundException, DocenteNotFoundException {
 		Insegnamento insegnamento=new Insegnamento();
 		Corso corso=corsoService.getById(insegnamentoDTO.getIdCorso());
-
-		
-		//return insegnamentoService.save(insegnamento);
+		Docente docente=docenteService.getById(insegnamentoDTO.getIdDocente());
+		insegnamento=InsegnamentoAdapter.InsegnamentoDTOToInsegnamento(insegnamentoDTO, corso, docente);
+		insegnamentoService.save(insegnamento);
 	}
 }

@@ -8,6 +8,10 @@ public class InsegnamentoDTO {
 	private int semestre;
 	private int abilitazione;
 	private int idCorso;
+	private int idDocente;
+	private String nomeCorso;
+	private String nomeDocente;
+
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -50,5 +54,23 @@ public class InsegnamentoDTO {
 	}
 	public void setIdCorso(int idCorso) {
 		this.idCorso = idCorso;
+	}
+	public int getIdDocente() {
+		return idDocente;
+	}
+	public void setIdDocente(int idDocente) {
+		this.idDocente = idDocente;
+	}
+	public String getNomeCorso() {
+		return nomeCorso;
+	}
+	public void setNomeCorso(String nomeCorso) {
+		this.nomeCorso = nomeCorso;
+	}
+	public String getNomeDocente() {
+		return nomeDocente;
+	}
+	public void setNomeDocente(String nomeDocente) {
+		this.nomeDocente = nomeDocente;
 	}
 }
