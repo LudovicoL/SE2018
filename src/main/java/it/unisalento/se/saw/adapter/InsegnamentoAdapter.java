@@ -21,7 +21,7 @@ public class InsegnamentoAdapter {
 	
 	public static InsegnamentoDTO InsegnamentoToInsegnamentoDTO(Insegnamento insegnamento) {
 		InsegnamentoDTO insegnamentoDTO=new InsegnamentoDTO();
-		insegnamentoDTO.setIdInsegnamento(insegnamento.getId());
+		insegnamentoDTO.setIdInsegnamento(insegnamento.getIdInsegnamento());
 		insegnamentoDTO.setNome(insegnamento.getNome());
 		insegnamentoDTO.setAnno(insegnamento.getAnno());
 		insegnamentoDTO.setCfu(insegnamento.getCfu());
