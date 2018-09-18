@@ -25,7 +25,7 @@ import javax.persistence.Table;
 public class Insegnamento  implements java.io.Serializable {
 
 
-     private InsegnamentoId id;
+     private Integer id;
      private Corso corso;
      private Docente docente;
      private String nome;
@@ -40,14 +40,12 @@ public class Insegnamento  implements java.io.Serializable {
     }
 
 	
-    public Insegnamento(InsegnamentoId id, Corso corso, Docente docente, int abilitazione) {
-        this.id = id;
+    public Insegnamento(Corso corso, Docente docente, int abilitazione) {
         this.corso = corso;
         this.docente = docente;
         this.abilitazione = abilitazione;
     }
-    public Insegnamento(InsegnamentoId id, Corso corso, Docente docente, String nome, Integer cfu, Integer semestre, Integer anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames) {
-       this.id = id;
+    public Insegnamento(Corso corso, Docente docente, String nome, Integer cfu, Integer semestre, Integer anno, int abilitazione, Set<Lezione> leziones, Set<Esame> esames) {
        this.corso = corso;
        this.docente = docente;
        this.nome = nome;
@@ -65,11 +63,11 @@ public class Insegnamento  implements java.io.Serializable {
     @AttributeOverrides( {
         @AttributeOverride(name="idInsegnamento", column=@Column(name="idInsegnamento", nullable=false) ), 
         @AttributeOverride(name="corsoIdCorso", column=@Column(name="Corso_idCorso", nullable=false) ) } )
-    public InsegnamentoId getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(InsegnamentoId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
