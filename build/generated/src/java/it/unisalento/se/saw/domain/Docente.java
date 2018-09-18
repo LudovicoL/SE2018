@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 14-set-2018 11.53.13 by Hibernate Tools 5.2.0.Final
+// Generated 18-set-2018 10.14.44 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.HashSet;
@@ -11,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -99,10 +97,7 @@ public class Docente  implements java.io.Serializable {
         this.segnalaziones = segnalaziones;
     }
 
-@ManyToMany(fetch=FetchType.LAZY)
-    @JoinTable(name="docente_has_insegnamento", catalog="mydb", joinColumns = { 
-        @JoinColumn(name="Docente_idDocente", nullable=false, updatable=false) }, inverseJoinColumns = { 
-        @JoinColumn(name="Insegnamento_idInsegnamento", nullable=false, updatable=false) })
+@OneToMany(fetch=FetchType.LAZY, mappedBy="docente")
     public Set<Insegnamento> getInsegnamentos() {
         return this.insegnamentos;
     }
