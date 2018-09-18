@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.IInsegnamentoService;
 import it.unisalento.se.saw.domain.Insegnamento;
+import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.exceptions.InsegnamentoNotFoundException;
 import it.unisalento.se.saw.repositories.InsegnamentoRepository;
 
@@ -16,16 +17,16 @@ public class InsegnamentoService implements IInsegnamentoService{
 	InsegnamentoRepository insegnamentoRepository;
 	
 	@Override
-	public List<InsegnamentoDTO> getAll() throws InsegnamentoNotFoundException {
+	public List<Insegnamento> getAll() {
 		// TODO Auto-generated method stub
 		return insegnamentoRepository.findAll();
 	}
 
 	
 	@Override
-	public Insegnamento save(Insegnamento insegnamento) {
+	public void save(Insegnamento insegnamento) {
 		// TODO Auto-generated method stub
-		return insegnamentoRepository.save(insegnamento);
+		insegnamentoRepository.save(insegnamento);
 	}
 
 	@Override
