@@ -14,4 +14,9 @@ public interface StudenteRepository extends JpaRepository<Studente, Integer> {
 	@Query("update Utente u set u.indirizzo=:indirizzo,u.email=:email where u.idUtente=:idUtente")
 	public void update(@Param("idUtente") int idUtente, @Param("email") String email,@Param("indirizzo") String indirizzo);
 
+    @Modifying
+    @Transactional
+	@Query("update Utente u set u.abilitazione=:abilitazione where u.idUtente=:idUtente")
+	public void updateAbilitazione(@Param("idUtente") int idUtente,@Param("abilitazione") int abilitazione);
+
 }

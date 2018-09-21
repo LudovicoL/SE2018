@@ -11,6 +11,7 @@ public class DocenteDTO {
 	private int stipendio;
 	private int abilitazione;
 	private int idUtente;
+	private String abilit;
 
 	
 	public int getAbilitazione() {
@@ -72,6 +73,12 @@ public class DocenteDTO {
 	}
 	public void setIdUtente(int idUtente) {
 		this.idUtente = idUtente;
+	}
+	public String getAbilit() {
+		return abilit;
+	}
+	public void setAbilit(String abilit) {
+		this.abilit = abilit;
 	}
 	
 }

@@ -11,6 +11,8 @@ public class CorsoAdapter {
 		corso.setDurata(corsoDTO.getDurata());
 		corso.setFacolta(corsoDTO.getFacolta());
 		corso.setLivello(corsoDTO.getLivello());
+		corso.setAbilitazione(corsoDTO.getAbilitazione());
+		corso.setIdCorso(corsoDTO.getIdCorso());
 		return corso;	
 	}
 	public static CorsoDTO CorsoToCorsoDTO(Corso corso){
@@ -20,6 +22,11 @@ public class CorsoAdapter {
 		corsoDTO.setLivello(corso.getLivello());
 		corsoDTO.setDurata(corso.getDurata());
 		corsoDTO.setFacolta(corso.getFacolta());
+		corsoDTO.setAbilitazione(corso.getAbilitazione());
+		if(corso.getAbilitazione()==1)
+			corsoDTO.setAbilit("Attivo");
+		else
+			corsoDTO.setAbilit("Disattivo");
 		return corsoDTO;
 	}
 }

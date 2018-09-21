@@ -9,10 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Insegnamento;
 
 public interface InsegnamentoRepository extends JpaRepository<Insegnamento, Integer>{
-/*
+
 	@Modifying
 	@Transactional
-	@Query("update Insegnamento i set i.nome=:nome, i.cfu=:cfu, i.semestre=:semestre, i.abilitazione=:abilitazione where i.idInsegnamento=:idInsegnamento")
-	public void update(@Param("nome") String nome, @Param("cfu") int cfu, @Param("semestre") int semestre, @Param("abilitazione") int abilitazione, @Param("idInsegnamento") int idInsegnamento);
-*/
+	@Query("update Insegnamento i set i.cfu=:cfu, i.semestre=:semestre, i.anno=:anno where i.idInsegnamento=:idInsegnamento")
+	public void update(@Param("cfu") int cfu, @Param("semestre") int semestre, @Param("anno") int anno, @Param("idInsegnamento") int idInsegnamento);
+
+    @Modifying
+    @Transactional
+	@Query("update Insegnamento i set i.abilitazione=:abilitazione where i.idInsegnamento=:idInsegnamento")
+	public void updateabilitazione(@Param("abilitazione") int abilitazione, @Param("idInsegnamento") int idInsegnamento);
+
 }

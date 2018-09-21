@@ -3,6 +3,7 @@ package it.unisalento.se.saw.Iservices;
 import java.util.List;
 
 import it.unisalento.se.saw.domain.Segnalazione;
+import it.unisalento.se.saw.dto.SegnalazioneDTO;
 import it.unisalento.se.saw.exceptions.SegnalazioneNotFoundException;
 
 
@@ -12,5 +13,7 @@ public interface ISegnalazioneService {
 	public void removeSegnalazioneById (int id) throws SegnalazioneNotFoundException;
 	public Segnalazione getById(int id) throws SegnalazioneNotFoundException;
 	public int count() throws SegnalazioneNotFoundException;
-	public void update(Segnalazione segnalazione);
+	public void update(SegnalazioneDTO segnalazioneDTO);
+	public void delete(int idSegnalazione);
+
 }

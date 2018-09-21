@@ -46,5 +46,17 @@ public class InsegnamentoService implements IInsegnamentoService{
 		// TODO Auto-generated method stub
 		return (int) insegnamentoRepository.count();
 	}
+	
+	@Override
+	public void update(InsegnamentoDTO insegnamentoDTO){
+		// TODO Auto-generated method stub
+		insegnamentoRepository.update(insegnamentoDTO.getCfu(),insegnamentoDTO.getSemestre(),insegnamentoDTO.getAnno(),insegnamentoDTO.getIdInsegnamento());
+	}
+	
+	@Override
+	public void updateAbilitazione(InsegnamentoDTO insegnamentoDTO){
+		// TODO Auto-generated method stub
+		insegnamentoRepository.updateabilitazione(insegnamentoDTO.getAbilitazione(),insegnamentoDTO.getIdInsegnamento());
+	}
 
 }

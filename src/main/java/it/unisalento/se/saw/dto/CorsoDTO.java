@@ -7,6 +7,7 @@ public class CorsoDTO {
 	private int durata;
 	private String livello;
 	private int abilitazione;
+	private String abilit;
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -44,5 +45,11 @@ public class CorsoDTO {
 	}
 	public void setLivello(String livello) {
 		this.livello = livello;
+	}
+	public String getAbilit() {
+		return abilit;
+	}
+	public void setAbilit(String abilit) {
+		this.abilit = abilit;
 	}
 }

@@ -7,6 +7,7 @@ import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.dto.DocenteDTO;
+import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.repositories.DocenteRepository;
 
@@ -48,4 +49,9 @@ public class DocenteService implements IDocenteService{
 	public void update2(DocenteDTO docenteDTO) {
 		docenteRepository.update2(docenteDTO.getEmail(),docenteDTO.getIndirizzo(),docenteDTO.getIdUtente());
 	}
+	
+	@Override
+	public void updateAbilitazione(DocenteDTO docenteDTO) {
+		docenteRepository.updateAbilitazione(docenteDTO.getIdUtente(),docenteDTO.getAbilitazione());
+	}	
 }

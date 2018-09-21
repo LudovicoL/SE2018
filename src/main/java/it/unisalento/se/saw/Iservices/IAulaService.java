@@ -12,4 +12,6 @@ public interface IAulaService {
 	public Aula getById(int id) throws AulaNotFoundException;
 	public int count() throws AulaNotFoundException;
 	public void update(Aula aula);
+	public void delete(int idAula);
+
 }

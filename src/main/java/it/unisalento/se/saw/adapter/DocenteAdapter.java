@@ -23,6 +23,10 @@ public class DocenteAdapter {
 		docenteDTO.setIndirizzo(utente.getIndirizzo());
 		docenteDTO.setIdDocente(docente.getIdDocente());
 		docenteDTO.setIdUtente(utente.getIdUtente());
+		if(utente.getAbilitazione()==1)
+			docenteDTO.setAbilit("Attivo");
+		else
+			docenteDTO.setAbilit("Disattivo");
 		return docenteDTO;
 	}
 

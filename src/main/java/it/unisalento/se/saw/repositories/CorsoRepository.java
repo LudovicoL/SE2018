@@ -13,4 +13,10 @@ public interface CorsoRepository extends JpaRepository<Corso, Integer>{
     @Transactional
 	@Query("update Corso c set c.nome=:nome, c.facolta=:facolta, c.durata=:durata, c.livello=:livello, c.abilitazione=:abilitazione where c.idCorso=:idCorso")
 	public void update(@Param("nome") String nome, @Param("facolta") String facolta, @Param("durata") int durata, @Param("livello") String livello, @Param("abilitazione") int abilitazione, @Param("idCorso") int idCorso);
+    
+    @Modifying
+    @Transactional
+	@Query("update Corso c set c.abilitazione=:abilitazione where c.idCorso=:idCorso")
+	public void updateabilitazione(@Param("abilitazione") int abilitazione, @Param("idCorso") int idCorso);
+
 }
