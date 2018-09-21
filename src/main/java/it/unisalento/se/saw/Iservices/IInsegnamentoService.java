@@ -12,4 +12,7 @@ public interface IInsegnamentoService {
 	public void removeInsegnamentoById (int id) throws InsegnamentoNotFoundException;
 	public Insegnamento getById(int id) throws InsegnamentoNotFoundException;
 	public int count() throws InsegnamentoNotFoundException;
+	public void update(InsegnamentoDTO insegnamentoDTO);
+	public void updateAbilitazione(InsegnamentoDTO insegnamentoDTO);
+
 }

@@ -18,4 +18,8 @@ public interface AulaRepository extends JpaRepository<Aula, Integer>{
 	@Query("update Aula set grandezza=:grandezza where idAula= :idAula")
 		public void update(@Param("grandezza") String grandezza,@Param("idAula") int idAula);
 
+	 @Modifying
+	 @Transactional
+	 @Query("delete from Aula u where u.idAula=:idAula")
+	    public void delete(@Param("idAula") int idAula);
 }

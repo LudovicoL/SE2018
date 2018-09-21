@@ -79,4 +79,10 @@ public class StrumentoRestController {
 		strumentoService.update(strumentoDTO);
 	}
 	
+	@RequestMapping(value="/delete/{idStrumento}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("idStrumento") int idStrumento) {
+		System.out.println(idStrumento);
+		strumentoService.delete(idStrumento);
+	}
+	
 }

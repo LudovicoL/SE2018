@@ -20,4 +20,10 @@ public interface DocenteRepository extends JpaRepository<Docente, Integer>{
 	@Query("update Utente u set u.email=:email,u.indirizzo=:indirizzo where u.idUtente=:idUtente")
 	public void update2(@Param("email") String email,@Param("indirizzo") String indirizzo, @Param("idUtente") int idUtente );
 
+	
+    @Modifying
+    @Transactional
+	@Query("update Utente u set u.abilitazione=:abilitazione where u.idUtente=:idUtente")
+	public void updateAbilitazione(@Param("idUtente") int idUtente,@Param("abilitazione") int abilitazione);
+
 }

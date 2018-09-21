@@ -11,6 +11,7 @@ public class InsegnamentoDTO {
 	private int idDocente;
 	private String nomeCorso;
 	private String nomeDocente;
+	private String abilit;
 
 	
 	public int getAbilitazione() {
@@ -72,5 +73,11 @@ public class InsegnamentoDTO {
 	}
 	public void setNomeDocente(String nomeDocente) {
 		this.nomeDocente = nomeDocente;
+	}
+	public String getAbilit() {
+		return abilit;
+	}
+	public void setAbilit(String abilit) {
+		this.abilit = abilit;
 	}
 }

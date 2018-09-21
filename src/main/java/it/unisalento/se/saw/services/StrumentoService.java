@@ -49,7 +49,13 @@ public class StrumentoService implements IStrumentoService{
 	public void update(StrumentoDTO strumentoDTO) {
 		// TODO Auto-generated method stub
 		strumentoRepository.update(strumentoDTO.getNome(), strumentoDTO.getFunzionante(), strumentoDTO.getAbilitazione(), strumentoDTO.getIdStrumento());
-		
 	}
+	
+	@Override
+	public void delete(int idStrumento) {
+		// TODO Auto-generated method stub
+		strumentoRepository.delete(idStrumento);
+	}
+	
 
 }

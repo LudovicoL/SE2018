@@ -15,4 +15,8 @@ public interface StrumentoRepository extends JpaRepository<Strumento, Integer>{
 	@Query("update Strumento s set s.nome=:nome, s.abilitazione=:abilitazione, s.funzionante=:funzionante where s.idStrumenti=:idStrumento")
 	public void update(@Param("nome") String nome, @Param("funzionante") int funzionante, @Param("abilitazione") int abilitazione, @Param("idStrumento") int idStrumento);
 
+	 @Modifying
+	 @Transactional
+	 @Query("delete from Strumento s where s.idStrumenti=:idStrumento")
+	    public void delete(@Param("idStrumento") int idStrumento);
 }

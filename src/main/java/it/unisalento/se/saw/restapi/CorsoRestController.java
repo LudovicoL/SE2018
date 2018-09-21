@@ -77,5 +77,12 @@ public class CorsoRestController {
 		corsoService.update(corso);
 	}
 	
+	@PatchMapping(value="/updateabilitazione", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void updateabilitazione(@RequestBody CorsoDTO corsoDTO) throws CorsoNotFoundException {
+		Corso corso=new Corso();
+		corso=CorsoAdapter.CorsoDTOToCorso(corsoDTO);
+		System.out.println(corso.getAbilitazione()+"  "+corso.getIdCorso());
+		corsoService.updateabilitazione(corso);
+	}
 
 }

@@ -15,5 +15,6 @@ public interface IDocenteService {
 	public int count() throws DocenteNotFoundException;
 	public void update1(DocenteDTO docenteDTO);
 	public void update2(DocenteDTO docenteDTO);
+	public void updateAbilitazione(DocenteDTO docenteDTO);
 
 }

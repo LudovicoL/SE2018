@@ -51,7 +51,10 @@ public class StudenteService implements IStudenteService{
 		studenteRepository.update(studenteDTO.getIdUtente(),studenteDTO.getEmail(),studenteDTO.getIndirizzo());
 	}
 	
-	
+	@Override
+	public void updateAbilitazione(StudenteDTO studenteDTO) {
+		studenteRepository.updateAbilitazione(studenteDTO.getIdUtente(),studenteDTO.getAbilitazione());
+	}	
 /*
 	@Transactional(rollbackFor=StudenteNotFoundException.class)
 	public void removeStudenteById (int id) throws StudenteNotFoundException {

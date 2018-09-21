@@ -1,12 +1,14 @@
 package it.unisalento.se.saw.dto;
 
 public class SegnalazioneDTO {
-	private String segnalazione;
+	private int idSegnalazione;
+	private String descrizione;
 	private int idDocente;
 	private int idStrumento;
 	private int idAula;
 	private int idSegreteria;
 	private int abilitazione;
+	private String stato;
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -14,12 +16,7 @@ public class SegnalazioneDTO {
 	public void setAbilitazione(int abilitazione) {
 		this.abilitazione = abilitazione;
 	}
-	public String getSegnalazione() {
-		return segnalazione;
-	}
-	public void setSegnalazione(String segnalazione) {
-		this.segnalazione = segnalazione;
-	}
+
 	public int getIdDocente() {
 		return idDocente;
 	}
@@ -43,5 +40,23 @@ public class SegnalazioneDTO {
 	}
 	public void setIdSegreteria(int idSegreteria) {
 		this.idSegreteria = idSegreteria;
+	}
+	public int getIdSegnalazione() {
+		return idSegnalazione;
+	}
+	public void setIdSegnalazione(int idSegnalazione) {
+		this.idSegnalazione = idSegnalazione;
+	}
+	public String getDescrizione() {
+		return descrizione;
+	}
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	public String getStato() {
+		return stato;
+	}
+	public void setStato(String stato) {
+		this.stato = stato;
 	}
 }

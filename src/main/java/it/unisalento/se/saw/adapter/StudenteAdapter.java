@@ -14,6 +14,7 @@ public class StudenteAdapter {
 		studente.setMatricola(studenteDTO.getMatricola());
 		studente.setCorso(corso);
 		studente.setUtente(utente);
+		studente.setIdStudente(studenteDTO.getIdStudente());
 		return studente;	
 	}
 
@@ -27,6 +28,11 @@ public class StudenteAdapter {
 		studenteDTO.setEmail(utente.getEmail());
 		studenteDTO.setIndirizzo(utente.getIndirizzo());	
 		studenteDTO.setIdUtente(utente.getIdUtente());
+		studenteDTO.setIdStudente(studente.getIdStudente());
+		if(utente.getAbilitazione()==1)
+			studenteDTO.setAbilit("Attivo");
+		else
+			studenteDTO.setAbilit("Disattivo");
 		return studenteDTO;
 	}
 

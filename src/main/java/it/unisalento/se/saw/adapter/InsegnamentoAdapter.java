@@ -16,6 +16,8 @@ public class InsegnamentoAdapter {
 		insegnamento.setSemestre(insegnamentoDTO.getSemestre());
 		insegnamento.setCorso(corso);
 		insegnamento.setDocente(docente);
+		insegnamento.setIdInsegnamento(insegnamentoDTO.getIdInsegnamento());
+		insegnamento.setAbilitazione(insegnamentoDTO.getAbilitazione());
 		return insegnamento;
 	}
 	
@@ -25,10 +27,16 @@ public class InsegnamentoAdapter {
 		insegnamentoDTO.setNome(insegnamento.getNome());
 		insegnamentoDTO.setAnno(insegnamento.getAnno());
 		insegnamentoDTO.setCfu(insegnamento.getCfu());
+		insegnamentoDTO.setSemestre(insegnamento.getSemestre());
 		insegnamentoDTO.setIdCorso(insegnamento.getCorso().getIdCorso());
 		insegnamentoDTO.setIdDocente(insegnamento.getDocente().getIdDocente());
 		insegnamentoDTO.setNomeCorso(insegnamento.getCorso().getNome());
+		insegnamentoDTO.setAbilitazione(insegnamento.getAbilitazione());
 		insegnamentoDTO.setNomeDocente(insegnamento.getDocente().getUtente().getNome());
+		if(insegnamento.getAbilitazione()==1)
+			insegnamentoDTO.setAbilit("Attivo");
+		else
+			insegnamentoDTO.setAbilit("Disattivo");
 		return insegnamentoDTO;
 	}
 }

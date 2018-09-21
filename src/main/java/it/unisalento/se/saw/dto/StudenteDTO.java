@@ -12,6 +12,7 @@ public class StudenteDTO {
 	private int idcorso;
 	private int abilitazione;
 	private int idUtente;
+	private String abilit;
 
 	public int getAbilitazione() {
 		return abilitazione;
@@ -78,5 +79,11 @@ public class StudenteDTO {
 	}
 	public void setIdUtente(int idUtente) {
 		this.idUtente = idUtente;
+	}
+	public String getAbilit() {
+		return abilit;
+	}
+	public void setAbilit(String abilit) {
+		this.abilit = abilit;
 	}
 }

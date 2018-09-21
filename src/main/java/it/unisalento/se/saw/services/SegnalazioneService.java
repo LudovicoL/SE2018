@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.ISegnalazioneService;
 import it.unisalento.se.saw.domain.Segnalazione;
+import it.unisalento.se.saw.dto.SegnalazioneDTO;
 import it.unisalento.se.saw.exceptions.SegnalazioneNotFoundException;
 import it.unisalento.se.saw.repositories.SegnalazioneRepository;
 @Service
@@ -45,9 +46,14 @@ public class SegnalazioneService implements ISegnalazioneService{
 	}
 
 	@Override
-	public void update(Segnalazione segnalazione) {
+	public void update(SegnalazioneDTO segnalazioneDTO) {
 		// TODO Auto-generated method stub
-		
+		segnalazioneRepository.update(segnalazioneDTO.getAbilitazione(), segnalazioneDTO.getIdSegnalazione());
 	}
-
+	
+	@Override
+	public void delete(int idSegnalazione) {
+		// TODO Auto-generated method stub
+		segnalazioneRepository.delete(idSegnalazione);
+	}
 }

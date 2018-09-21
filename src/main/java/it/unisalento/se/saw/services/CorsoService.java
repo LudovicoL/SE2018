@@ -44,5 +44,11 @@ public class CorsoService implements ICorsoService{
 	public void update(Corso corso) {
 		corsoRepository.update(corso.getNome(), corso.getFacolta(), corso.getDurata(),corso.getLivello(),corso.getAbilitazione(),corso.getIdCorso());
 	}
+	
+	@Override
+	public void updateabilitazione(Corso corso) {
+		corsoRepository.updateabilitazione(corso.getAbilitazione(), corso.getIdCorso());
+	}
+
 
 }
