@@ -13,4 +13,6 @@ public interface IStudenteService {
 	public Studente save(Studente studente);
 	//public void removeStudenteById (int id) throws StudenteNotFoundException;
 	public void update(StudenteDTO studenteDTO);
+	public void updateAbilitazione(StudenteDTO studenteDTO);
+
 }

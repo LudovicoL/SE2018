@@ -22,6 +22,7 @@ import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.DocenteDTO;
+import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
@@ -79,5 +80,10 @@ public class DocenteRestController {
 	public void update(@RequestBody DocenteDTO docenteDTO) {
 		docenteService.update1(docenteDTO);
 		docenteService.update2(docenteDTO);
+	}
+	
+	@PatchMapping(value="/updateAbilitazione", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void updateabilitazione(@RequestBody DocenteDTO docenteDTO) {
+		docenteService.updateAbilitazione(docenteDTO);
 	}
 }

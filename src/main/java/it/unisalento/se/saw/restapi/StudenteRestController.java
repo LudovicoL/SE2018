@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
+import it.unisalento.se.saw.adapter.CorsoAdapter;
 import it.unisalento.se.saw.adapter.StudenteAdapter;
 import it.unisalento.se.saw.adapter.UtenteAdapter;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
+import it.unisalento.se.saw.dto.CorsoDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
@@ -96,5 +98,11 @@ public class StudenteRestController {
 	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void update(@RequestBody StudenteDTO studenteDTO) {
 		studenteService.update(studenteDTO);
+	}
+	
+	@PatchMapping(value="/updateAbilitazione", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void updateabilitazione(@RequestBody StudenteDTO studenteDTO) {
+		System.out.println(studenteDTO.getAbilitazione()+"  "+studenteDTO.getIdUtente());
+		studenteService.updateAbilitazione(studenteDTO);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -85,5 +86,11 @@ public class AulaRestController {
 	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
 	public void update(@RequestBody Aula aula) throws AulaNotFoundException {
 		aulaService.update(aula);
+	}
+	
+	@RequestMapping(value="/delete/{idAula}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("idAula") int idAula) {
+		System.out.println(idAula);
+		aulaService.delete(idAula);
 	}
 }

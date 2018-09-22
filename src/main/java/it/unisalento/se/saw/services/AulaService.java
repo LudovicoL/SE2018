@@ -51,6 +51,11 @@ public class AulaService implements IAulaService{
 	public void update(Aula aula) {
 		aulaRepository.update(aula.getGrandezza(),aula.getIdAula());
 		// TODO Auto-generated method stub
-		
+	}
+	
+	@Override
+	public void delete(int idAula) {
+		aulaRepository.delete(idAula);
+		// TODO Auto-generated method stub
 	}
 }
