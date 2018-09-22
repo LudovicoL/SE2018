@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
+// Generated 22-set-2018 13.19.06 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -28,9 +28,10 @@ public class Esame  implements java.io.Serializable {
      private Integer idEsame;
      private Aula aula;
      private Insegnamento insegnamento;
-     private Date data;
+     private Date datainizio;
      private String tipo;
      private int abilitazione;
+     private Date datafine;
 
     public Esame() {
     }
@@ -41,12 +42,13 @@ public class Esame  implements java.io.Serializable {
         this.insegnamento = insegnamento;
         this.abilitazione = abilitazione;
     }
-    public Esame(Aula aula, Insegnamento insegnamento, Date data, String tipo, int abilitazione) {
+    public Esame(Aula aula, Insegnamento insegnamento, Date datainizio, String tipo, int abilitazione, Date datafine) {
        this.aula = aula;
        this.insegnamento = insegnamento;
-       this.data = data;
+       this.datainizio = datainizio;
        this.tipo = tipo;
        this.abilitazione = abilitazione;
+       this.datafine = datafine;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -82,13 +84,13 @@ public class Esame  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="data", length=19)
-    public Date getData() {
-        return this.data;
+    @Column(name="datainizio", length=19)
+    public Date getDatainizio() {
+        return this.datainizio;
     }
     
-    public void setData(Date data) {
-        this.data = data;
+    public void setDatainizio(Date datainizio) {
+        this.datainizio = datainizio;
     }
 
     
@@ -109,6 +111,16 @@ public class Esame  implements java.io.Serializable {
     
     public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datafine", length=19)
+    public Date getDatafine() {
+        return this.datafine;
+    }
+    
+    public void setDatafine(Date datafine) {
+        this.datafine = datafine;
     }
 
 
