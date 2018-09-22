@@ -1,9 +1,7 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
+// Generated 22-set-2018 13.19.06 by Hibernate Tools 5.2.0.Final
 
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -28,7 +25,6 @@ public class Segreteria  implements java.io.Serializable {
      private Integer idSegreteria;
      private Utente utente;
      private Integer stipendio;
-     private Set<Segnalazione> segnalaziones = new HashSet<Segnalazione>(0);
 
     public Segreteria() {
     }
@@ -37,10 +33,9 @@ public class Segreteria  implements java.io.Serializable {
     public Segreteria(Utente utente) {
         this.utente = utente;
     }
-    public Segreteria(Utente utente, Integer stipendio, Set<Segnalazione> segnalaziones) {
+    public Segreteria(Utente utente, Integer stipendio) {
        this.utente = utente;
        this.stipendio = stipendio;
-       this.segnalaziones = segnalaziones;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -73,15 +68,6 @@ public class Segreteria  implements java.io.Serializable {
     
     public void setStipendio(Integer stipendio) {
         this.stipendio = stipendio;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="segreteria")
-    public Set<Segnalazione> getSegnalaziones() {
-        return this.segnalaziones;
-    }
-    
-    public void setSegnalaziones(Set<Segnalazione> segnalaziones) {
-        this.segnalaziones = segnalaziones;
     }
 
 

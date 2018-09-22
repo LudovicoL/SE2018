@@ -1,9 +1,7 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
+// Generated 22-set-2018 13.19.06 by Hibernate Tools 5.2.0.Final
 
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +10,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -30,7 +27,6 @@ public class Strumento  implements java.io.Serializable {
      private String nome;
      private Integer funzionante;
      private int abilitazione;
-     private Set<Segnalazione> segnalaziones = new HashSet<Segnalazione>(0);
 
     public Strumento() {
     }
@@ -40,12 +36,11 @@ public class Strumento  implements java.io.Serializable {
         this.aula = aula;
         this.abilitazione = abilitazione;
     }
-    public Strumento(Aula aula, String nome, Integer funzionante, int abilitazione, Set<Segnalazione> segnalaziones) {
+    public Strumento(Aula aula, String nome, Integer funzionante, int abilitazione) {
        this.aula = aula;
        this.nome = nome;
        this.funzionante = funzionante;
        this.abilitazione = abilitazione;
-       this.segnalaziones = segnalaziones;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -98,15 +93,6 @@ public class Strumento  implements java.io.Serializable {
     
     public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="strumento")
-    public Set<Segnalazione> getSegnalaziones() {
-        return this.segnalaziones;
-    }
-    
-    public void setSegnalaziones(Set<Segnalazione> segnalaziones) {
-        this.segnalaziones = segnalaziones;
     }
 
 

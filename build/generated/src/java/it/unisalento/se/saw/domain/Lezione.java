@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
+// Generated 22-set-2018 13.19.06 by Hibernate Tools 5.2.0.Final
 
 
 import java.util.Date;
@@ -31,8 +31,9 @@ public class Lezione  implements java.io.Serializable {
      private Integer idLezione;
      private Aula aula;
      private Insegnamento insegnamento;
-     private Date data;
+     private Date datainizio;
      private int abilitazione;
+     private Date datafine;
      private Set<Gradimento> gradimentos = new HashSet<Gradimento>(0);
      private Set<Materiale> materiales = new HashSet<Materiale>(0);
 
@@ -45,11 +46,12 @@ public class Lezione  implements java.io.Serializable {
         this.insegnamento = insegnamento;
         this.abilitazione = abilitazione;
     }
-    public Lezione(Aula aula, Insegnamento insegnamento, Date data, int abilitazione, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
+    public Lezione(Aula aula, Insegnamento insegnamento, Date datainizio, int abilitazione, Date datafine, Set<Gradimento> gradimentos, Set<Materiale> materiales) {
        this.aula = aula;
        this.insegnamento = insegnamento;
-       this.data = data;
+       this.datainizio = datainizio;
        this.abilitazione = abilitazione;
+       this.datafine = datafine;
        this.gradimentos = gradimentos;
        this.materiales = materiales;
     }
@@ -87,13 +89,13 @@ public class Lezione  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="data", length=19)
-    public Date getData() {
-        return this.data;
+    @Column(name="datainizio", length=19)
+    public Date getDatainizio() {
+        return this.datainizio;
     }
     
-    public void setData(Date data) {
-        this.data = data;
+    public void setDatainizio(Date datainizio) {
+        this.datainizio = datainizio;
     }
 
     
@@ -104,6 +106,16 @@ public class Lezione  implements java.io.Serializable {
     
     public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="datafine", length=19)
+    public Date getDatafine() {
+        return this.datafine;
+    }
+    
+    public void setDatafine(Date datafine) {
+        this.datafine = datafine;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="lezione")
