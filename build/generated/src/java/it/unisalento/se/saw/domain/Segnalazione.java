@@ -1,5 +1,5 @@
 package it.unisalento.se.saw.domain;
-// Generated 18-set-2018 11.51.54 by Hibernate Tools 5.2.0.Final
+// Generated 22-set-2018 13.19.06 by Hibernate Tools 5.2.0.Final
 
 
 import javax.persistence.Column;
@@ -25,10 +25,9 @@ public class Segnalazione  implements java.io.Serializable {
      private Integer idSegnalazione;
      private Aula aula;
      private Docente docente;
-     private Segreteria segreteria;
-     private Strumento strumento;
      private String descrizione;
      private int abilitazione;
+     private String commento;
 
     public Segnalazione() {
     }
@@ -38,13 +37,12 @@ public class Segnalazione  implements java.io.Serializable {
         this.docente = docente;
         this.abilitazione = abilitazione;
     }
-    public Segnalazione(Aula aula, Docente docente, Segreteria segreteria, Strumento strumento, String descrizione, int abilitazione) {
+    public Segnalazione(Aula aula, Docente docente, String descrizione, int abilitazione, String commento) {
        this.aula = aula;
        this.docente = docente;
-       this.segreteria = segreteria;
-       this.strumento = strumento;
        this.descrizione = descrizione;
        this.abilitazione = abilitazione;
+       this.commento = commento;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -79,26 +77,6 @@ public class Segnalazione  implements java.io.Serializable {
         this.docente = docente;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Segreteria_idSegreteria")
-    public Segreteria getSegreteria() {
-        return this.segreteria;
-    }
-    
-    public void setSegreteria(Segreteria segreteria) {
-        this.segreteria = segreteria;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="Strumento_idStrumenti")
-    public Strumento getStrumento() {
-        return this.strumento;
-    }
-    
-    public void setStrumento(Strumento strumento) {
-        this.strumento = strumento;
-    }
-
     
     @Column(name="descrizione")
     public String getDescrizione() {
@@ -117,6 +95,16 @@ public class Segnalazione  implements java.io.Serializable {
     
     public void setAbilitazione(int abilitazione) {
         this.abilitazione = abilitazione;
+    }
+
+    
+    @Column(name="commento")
+    public String getCommento() {
+        return this.commento;
+    }
+    
+    public void setCommento(String commento) {
+        this.commento = commento;
     }
 
 
