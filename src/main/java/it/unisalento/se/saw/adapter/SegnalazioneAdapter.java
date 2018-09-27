@@ -12,7 +12,6 @@ public class SegnalazioneAdapter {
 		segnalazione.setDescrizione(segnalazioneDTO.getDescrizione());
 		segnalazione.setDocente(docente);
 		segnalazione.setAula(aula);
-		segnalazione.setStrumento(strumento);
 		segnalazione.setAbilitazione(segnalazioneDTO.getAbilitazione());
 
 		return segnalazione;
