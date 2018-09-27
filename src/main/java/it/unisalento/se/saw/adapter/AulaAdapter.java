@@ -18,8 +18,8 @@ public class AulaAdapter {
 		aulaDTO.setIdAula(aula.getIdAula());
 		aulaDTO.setNome(aula.getNome());
 		aulaDTO.setGrandezza(aula.getGrandezza());
-		aulaDTO.setLatitudine(aula.getLatitudine());
-		aulaDTO.setLongitudine(aula.getLongitudine());
+		//aulaDTO.setLatitudine(aula.getLatitudine());
+		//aulaDTO.setLongitudine(aula.getLongitudine());
 		return aulaDTO;
 	}
 }
