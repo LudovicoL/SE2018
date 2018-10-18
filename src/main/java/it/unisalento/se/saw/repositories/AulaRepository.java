@@ -22,4 +22,5 @@ public interface AulaRepository extends JpaRepository<Aula, Integer>{
 	 @Transactional
 	 @Query("delete from Aula u where u.idAula=:idAula")
 	    public void delete(@Param("idAula") int idAula);
+	
 }

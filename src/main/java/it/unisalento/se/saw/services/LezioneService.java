@@ -1,19 +1,24 @@
 package it.unisalento.se.saw.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.ILezioneService;
+import it.unisalento.se.saw.domain.Docente;
+import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.exceptions.LezioneNotFoundException;
+import it.unisalento.se.saw.repositories.InsegnamentoRepository;
 import it.unisalento.se.saw.repositories.LezioneRepository;
 @Service
 public class LezioneService implements ILezioneService{
 	@Autowired
 	LezioneRepository lezioneRepository;
-	
+	@Autowired
+	InsegnamentoRepository insegnamentoRepository;
 	@Override
 	public List<Lezione> getAll() throws LezioneNotFoundException {
 		// TODO Auto-generated method stub
@@ -48,6 +53,18 @@ public class LezioneService implements ILezioneService{
 	public void update(Lezione lezione) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public int lezioneEsistente(Date datainizio,Date datafine,int idInsegnamento) {
+		Insegnamento insegnamento=new Insegnamento();
+		insegnamento=insegnamentoRepository.getOne(idInsegnamento);
+		return lezioneRepository.lezioneEsistente(datainizio, datafine, insegnamento);
+	}
+	
+	@Override
+	public List<Lezione> lezioneDocente(Date datainizio, Date datafine,Docente docente) {
+		return lezioneRepository.lezioneDocente(datainizio,datafine,docente);
 	}
 
 }

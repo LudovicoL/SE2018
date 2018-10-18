@@ -1,5 +1,6 @@
 package it.unisalento.se.saw.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,15 @@ import it.unisalento.se.saw.Iservices.IAulaService;
 import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 import it.unisalento.se.saw.repositories.AulaRepository;
+import it.unisalento.se.saw.repositories.LezioneRepository;
 
 @Service
 public class AulaService implements IAulaService{
 
 	@Autowired
 	AulaRepository aulaRepository;
+	@Autowired
+	LezioneRepository lezioneRepository;
 	
 	@Override
 	public List<Aula> getAll() throws AulaNotFoundException {
@@ -59,4 +63,11 @@ public class AulaService implements IAulaService{
 		// TODO Auto-generated method stub
 	}
 	
+	@Override
+	public List<Aula> auleLibere(Date datainizio, Date datafine){
+		return lezioneRepository.auleLibere(datainizio, datafine);
+	}
+	
+
+
 }
