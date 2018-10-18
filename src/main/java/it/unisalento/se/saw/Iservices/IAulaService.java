@@ -1,5 +1,6 @@
 package it.unisalento.se.saw.Iservices;
 
+import java.util.Date;
 import java.util.List;
 
 import it.unisalento.se.saw.domain.Aula;
@@ -13,5 +14,5 @@ public interface IAulaService {
 	public int count() throws AulaNotFoundException;
 	public void update(Aula aula);
 	public void delete(int idAula);
-
+	public List<Aula> auleLibere(Date datainizio, Date datafine);
 }
