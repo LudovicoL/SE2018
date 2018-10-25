@@ -6,9 +6,11 @@ public class SegnalazioneDTO {
 	private int idDocente;
 	private int idStrumento;
 	private int idAula;
-	private int idSegreteria;
 	private int abilitazione;
 	private String stato;
+	private String nomeaula;
+	private String nomedocente;
+	private String commento;
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -35,12 +37,7 @@ public class SegnalazioneDTO {
 	public void setIdAula(int idAula) {
 		this.idAula = idAula;
 	}
-	public int getIdSegreteria() {
-		return idSegreteria;
-	}
-	public void setIdSegreteria(int idSegreteria) {
-		this.idSegreteria = idSegreteria;
-	}
+
 	public int getIdSegnalazione() {
 		return idSegnalazione;
 	}
@@ -58,5 +55,23 @@ public class SegnalazioneDTO {
 	}
 	public void setStato(String stato) {
 		this.stato = stato;
+	}
+	public String getNomeaula() {
+		return nomeaula;
+	}
+	public void setNomeaula(String nomeaula) {
+		this.nomeaula = nomeaula;
+	}
+	public String getNomedocente() {
+		return nomedocente;
+	}
+	public void setNomedocente(String nomedocente) {
+		this.nomedocente = nomedocente;
+	}
+	public String getCommento() {
+		return commento;
+	}
+	public void setCommento(String commento) {
+		this.commento = commento;
 	}
 }

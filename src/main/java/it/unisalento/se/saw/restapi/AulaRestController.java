@@ -1,6 +1,10 @@
 package it.unisalento.se.saw.restapi;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IAulaService;
+import it.unisalento.se.saw.Iservices.ILezioneService;
 import it.unisalento.se.saw.adapter.AulaAdapter;
 import it.unisalento.se.saw.domain.Aula;
+import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 
@@ -26,6 +32,9 @@ import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 public class AulaRestController {
 	@Autowired
 	IAulaService aulaService;
+	
+	@Autowired
+	ILezioneService lezioneService;
 	
 	public AulaRestController() {
 		super();
@@ -93,4 +102,32 @@ public class AulaRestController {
 		System.out.println(idAula);
 		aulaService.delete(idAula);
 	}
+	
+	
+	@GetMapping(value="/aulelibere/{datainizio}/{datafine}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<AulaDTO> aulelibere(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine) throws AulaNotFoundException, ParseException{
+		//DateFormat formatter1;
+		//Date data1,data2;
+		//formatter1 = new SimpleDateFormat("yyyy-mm-DD hh:mm");
+		//data1=formatter1.parse(datainizio);
+		//data2=formatter1.parse(datafine);
+		//System.out.println(data1 + "ciao");
+		//System.out.println(data2);
+		List<Aula> aule=new ArrayList<Aula>();
+		aule=aulaService.auleLibere(datainizio, datafine);
+		
+		List<AulaDTO> auleDTO=new ArrayList<AulaDTO>();
+		Iterator<Aula> aulait=aule.iterator();
+		while(aulait.hasNext()){
+			Aula aula=aulait.next();
+			AulaDTO aulaDTO=new AulaDTO();
+			aulaDTO=AulaAdapter.AulaToAulaDTO(aula);
+			auleDTO.add(aulaDTO);
+		}
+		return auleDTO;	
+	}	
+	
+	
+	
+	
 }
