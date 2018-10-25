@@ -48,7 +48,7 @@ public class SegnalazioneService implements ISegnalazioneService{
 	@Override
 	public void update(SegnalazioneDTO segnalazioneDTO) {
 		// TODO Auto-generated method stub
-		segnalazioneRepository.update(segnalazioneDTO.getAbilitazione(), segnalazioneDTO.getIdSegnalazione());
+		segnalazioneRepository.update(segnalazioneDTO.getAbilitazione(), segnalazioneDTO.getIdSegnalazione(), segnalazioneDTO.getCommento());
 	}
 	
 	@Override
