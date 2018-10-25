@@ -12,8 +12,8 @@ public interface SegnalazioneRepository extends JpaRepository<Segnalazione, Inte
 	
 	@Modifying
 	@Transactional
-	@Query("update Segnalazione s set s.abilitazione=:abilitazione where s.idSegnalazione=:idSegnalazione")
-	public void update(@Param("abilitazione") int abilitazione, @Param("idSegnalazione") int idSegnalazione);
+	@Query("update Segnalazione s set s.abilitazione=:abilitazione, s.commento=:commento where s.idSegnalazione=:idSegnalazione")
+	public void update(@Param("abilitazione") int abilitazione, @Param("idSegnalazione") int idSegnalazione,@Param("commento") String commento);
 
 	@Modifying
 	@Transactional

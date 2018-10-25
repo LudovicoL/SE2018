@@ -31,6 +31,7 @@ import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.SegnalazioneNotFoundException;
 import it.unisalento.se.saw.exceptions.StrumentoNotFoundException;
+import it.unisalento.se.saw.repositories.AulaRepository;
 import it.unisalento.se.saw.services.AulaService;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
@@ -67,14 +68,16 @@ public class SegnalazioneRestController {
 	public void delete(@PathVariable("idSegnalazione") int idSegnalazione) {
 		segnalazioneService.delete(idSegnalazione);
 	}
-	/*
+	
 	@PostMapping(value="save", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void post(@RequestBody AulaDTO aulaDTO) throws AulaNotFoundException {
+	public void post(@RequestBody SegnalazioneDTO segnalazioneDTO) throws AulaNotFoundException, DocenteNotFoundException {
 		Segnalazione segnalazione=new Segnalazione();
-		segnalazione=SegnalazioneAdapter.SegnalazioneDTOToSegnalazione(aulaDTO);
-		aulaService.save(aula);
+		Aula aula=aulaService.getById(segnalazioneDTO.getIdAula()); 
+		Docente docente=docenteService.getById(segnalazioneDTO.getIdDocente());
+		segnalazione=SegnalazioneAdapter.SegnalazioneDTOToSegnalazione(segnalazioneDTO,docente,aula);
+		segnalazioneService.save(segnalazione);
 	}
-	*/
+	
 	
 	@RequestMapping(value="/getAll", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<SegnalazioneDTO> getAll() throws AulaNotFoundException, SegnalazioneNotFoundException, DocenteNotFoundException, StrumentoNotFoundException {
