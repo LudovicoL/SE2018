@@ -1,5 +1,7 @@
 package it.unisalento.se.saw.dto;
 
+import java.util.Date;
+
 public class SegnalazioneDTO {
 	private int idSegnalazione;
 	private String descrizione;
@@ -11,6 +13,7 @@ public class SegnalazioneDTO {
 	private String nomeaula;
 	private String nomedocente;
 	private String commento;
+	private Date data;
 	
 	public int getAbilitazione() {
 		return abilitazione;
@@ -73,5 +76,11 @@ public class SegnalazioneDTO {
 	}
 	public void setCommento(String commento) {
 		this.commento = commento;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
 	}
 }
