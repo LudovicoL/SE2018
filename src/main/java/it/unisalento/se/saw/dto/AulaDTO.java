@@ -4,8 +4,8 @@ public class AulaDTO {
 	private int idAula;
 	private String nome;
 	private String grandezza;
-	private double latitudine;
-	private double longitudine;
+	private double lat;
+	private double lng;
 	private int abilitazione;
 	
 	public int getAbilitazione() {
@@ -26,23 +26,24 @@ public class AulaDTO {
 	public void setGrandezza(String grandezza) {
 		this.grandezza = grandezza;
 	}
-	public double getLatitudine() {
-		return latitudine;
-	}
-	public void setLatitudine(double latitudine) {
-		this.latitudine = latitudine;
-	}
-	public double getLongitudine() {
-		return longitudine;
-	}
-	public void setLongitudine(double longitudine) {
-		this.longitudine = longitudine;
-	}
+
 	public int getIdAula() {
 		return idAula;
 	}
 	public void setIdAula(int idAula) {
 		this.idAula = idAula;
+	}
+	public double getLat() {
+		return lat;
+	}
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	public double getLng() {
+		return lng;
+	}
+	public void setLng(double lng) {
+		this.lng = lng;
 	}
 	
 }

@@ -22,6 +22,7 @@ import it.unisalento.se.saw.Iservices.IAulaService;
 import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IInsegnamentoService;
 import it.unisalento.se.saw.Iservices.ILezioneService;
+import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.adapter.AulaAdapter;
 import it.unisalento.se.saw.adapter.InsegnamentoAdapter;
 import it.unisalento.se.saw.adapter.LezioneAdapter;
@@ -30,6 +31,7 @@ import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Lezione;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.dto.LezioneDTO;
@@ -39,6 +41,7 @@ import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.InsegnamentoNotFoundException;
 import it.unisalento.se.saw.exceptions.LezioneNotFoundException;
+import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
 @RequestMapping(value="/lezione")
@@ -52,6 +55,8 @@ public class LezioneRestController {
 	IInsegnamentoService insegnamentoService;
 	@Autowired
 	IDocenteService docenteService;
+	@Autowired
+	IStudenteService studenteService;
 		
 	public LezioneRestController() {
 		super();
@@ -120,17 +125,11 @@ public class LezioneRestController {
 	
 	@GetMapping(value="/lezionedocente/{datainizio}/{datafine}/{idDocente}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<LezioneDTO> lezioneDocente(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine,@PathVariable("idDocente") int idDocente) throws ParseException, DocenteNotFoundException{
+		System.out.println(datainizio);
 		Docente docente=new Docente();
 		docente=docenteService.getById(idDocente);		
 		List<Lezione> lezioni = null;
 		List<LezioneDTO> lezioniDTO=new ArrayList<LezioneDTO>();
-		//DateFormat formatter1;
-		//Date data1,data2;
-		//formatter1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-		//data1=formatter1.parse(datainizio);
-		//data1.setMonth(data1.getMonth()+1);
-		//data2=formatter1.parse(datafine);
-		//data2.setMonth(data2.getMonth()+1);
 		lezioni=(lezioneService.lezioneDocente(datainizio,datafine,docente));
 		Iterator<Lezione> lezion = lezioni.iterator();
 		while(lezion.hasNext()) {
@@ -140,7 +139,24 @@ public class LezioneRestController {
 			lezioneDTO.setNomeInsegnamento(lezione.getInsegnamento().getNome());
 			lezioneDTO.setNomeaula(lezione.getAula().getNome());
 			lezioniDTO.add(lezioneDTO);	
-			System.out.println(lezioneDTO.getDatainizio());
+		}
+		return lezioniDTO;
+	}	
+	
+	@GetMapping(value="/lezionestudente/{datainizio}/{datafine}/{idStudente}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<LezioneDTO> lezioneStudente(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine,@PathVariable("idStudente") int idStudente) throws ParseException, StudenteNotFoundException{
+		System.out.println(datainizio);
+		List<Lezione> lezioni = null;
+		List<LezioneDTO> lezioniDTO=new ArrayList<LezioneDTO>();
+		lezioni=(lezioneService.lezioneStudente(datainizio,datafine,idStudente));
+		Iterator<Lezione> lezion = lezioni.iterator();
+		while(lezion.hasNext()) {
+			LezioneDTO lezioneDTO= new LezioneDTO();
+			Lezione lezione=lezion.next();
+			lezioneDTO=LezioneAdapter.LezioneToLezioneDTO(lezione);
+			lezioneDTO.setNomeInsegnamento(lezione.getInsegnamento().getNome());
+			lezioneDTO.setNomeaula(lezione.getAula().getNome());
+			lezioniDTO.add(lezioneDTO);	
 		}
 		return lezioniDTO;
 	}	

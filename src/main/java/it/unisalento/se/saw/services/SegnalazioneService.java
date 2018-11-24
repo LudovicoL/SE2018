@@ -3,6 +3,7 @@ package it.unisalento.se.saw.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.ISegnalazioneService;
@@ -18,8 +19,12 @@ public class SegnalazioneService implements ISegnalazioneService{
 	@Override
 	public List<Segnalazione> getAll() throws SegnalazioneNotFoundException {
 		// TODO Auto-generated method stub
-		return segnalazioneRepository.findAll();
+		return segnalazioneRepository.findAll(sortByIdAsc());
 	}
+	
+    private Sort sortByIdAsc() {
+        return new Sort(Sort.Direction.DESC, "data");
+    }
 
 	@Override
 	public Segnalazione save(Segnalazione segnalazione) {

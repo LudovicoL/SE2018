@@ -8,8 +8,8 @@ public class AulaAdapter {
 		Aula aula=new Aula();
 		aula.setNome(aulaDTO.getNome());
 		aula.setGrandezza(aulaDTO.getGrandezza());
-		aula.setLatitudine(aulaDTO.getLatitudine());
-		aula.setLongitudine(aulaDTO.getLongitudine());
+		aula.setLatitudine(aulaDTO.getLat());
+		aula.setLongitudine(aulaDTO.getLng());
 		return aula;
 	}
 	
@@ -18,8 +18,8 @@ public class AulaAdapter {
 		aulaDTO.setIdAula(aula.getIdAula());
 		aulaDTO.setNome(aula.getNome());
 		aulaDTO.setGrandezza(aula.getGrandezza());
-		//aulaDTO.setLatitudine(aula.getLatitudine());
-		//aulaDTO.setLongitudine(aula.getLongitudine());
+		aulaDTO.setLat(aula.getLatitudine());
+		aulaDTO.setLng(aula.getLongitudine());
 		return aulaDTO;
 	}
 }

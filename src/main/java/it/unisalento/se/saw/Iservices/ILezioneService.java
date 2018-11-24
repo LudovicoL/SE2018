@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Lezione;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.exceptions.LezioneNotFoundException;
 
 public interface ILezioneService {
@@ -16,4 +17,6 @@ public interface ILezioneService {
 	public void update(Lezione lezione);
 	public int lezioneEsistente(Date datainizio, Date datafine, int idInsegnamento);
 	public List<Lezione> lezioneDocente(Date datainizio, Date datafine,Docente docente);
+	public List<Lezione> lezioneStudente(Date datainizio, Date datafine, Integer studente);
+	List<Lezione> lezioneInsegnamento(int idInsegnamento);
 }

@@ -106,16 +106,23 @@ public class AulaRestController {
 	
 	@GetMapping(value="/aulelibere/{datainizio}/{datafine}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<AulaDTO> aulelibere(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine) throws AulaNotFoundException, ParseException{
-		//DateFormat formatter1;
-		//Date data1,data2;
-		//formatter1 = new SimpleDateFormat("yyyy-mm-DD hh:mm");
-		//data1=formatter1.parse(datainizio);
-		//data2=formatter1.parse(datafine);
-		//System.out.println(data1 + "ciao");
-		//System.out.println(data2);
 		List<Aula> aule=new ArrayList<Aula>();
 		aule=aulaService.auleLibere(datainizio, datafine);
-		
+		List<AulaDTO> auleDTO=new ArrayList<AulaDTO>();
+		Iterator<Aula> aulait=aule.iterator();
+		while(aulait.hasNext()){
+			Aula aula=aulait.next();
+			AulaDTO aulaDTO=new AulaDTO();
+			aulaDTO=AulaAdapter.AulaToAulaDTO(aula);
+			auleDTO.add(aulaDTO);
+		}
+		return auleDTO;	
+	}	
+	
+	@GetMapping(value="/aulelibereEsame/{datainizio}/{datafine}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<AulaDTO> aulelibereEsame(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine) throws AulaNotFoundException, ParseException{
+		List<Aula> aule=new ArrayList<Aula>();
+		aule=aulaService.auleLibereEsame(datainizio, datafine);
 		List<AulaDTO> auleDTO=new ArrayList<AulaDTO>();
 		Iterator<Aula> aulait=aule.iterator();
 		while(aulait.hasNext()){

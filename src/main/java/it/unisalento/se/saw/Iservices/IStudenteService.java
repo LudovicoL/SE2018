@@ -2,6 +2,7 @@ package it.unisalento.se.saw.Iservices;
 
 import java.util.List;
 
+import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
@@ -14,5 +15,6 @@ public interface IStudenteService {
 	//public void removeStudenteById (int id) throws StudenteNotFoundException;
 	public void update(StudenteDTO studenteDTO);
 	public void updateAbilitazione(StudenteDTO studenteDTO);
+	public List<Studente> listastudentibycorso(Corso corso,Integer idstudente);
 
 }

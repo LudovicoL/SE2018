@@ -9,6 +9,7 @@ import it.unisalento.se.saw.Iservices.IMaterialeService;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.domain.Materiale;
+import it.unisalento.se.saw.dto.MaterialeDTO;
 import it.unisalento.se.saw.exceptions.MaterialeNotFoundException;
 import it.unisalento.se.saw.repositories.MaterialeRepository;
 
@@ -52,7 +53,6 @@ public class MaterialeService implements IMaterialeService{
 		// TODO Auto-generated method stub
 		
 	}
-	
 	
 
 }
