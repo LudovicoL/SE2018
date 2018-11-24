@@ -3,10 +3,14 @@ package it.unisalento.se.saw.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import it.unisalento.se.saw.Iservices.IInsegnamentoService;
+import it.unisalento.se.saw.domain.Corso;
+import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.exceptions.InsegnamentoNotFoundException;
 import it.unisalento.se.saw.repositories.InsegnamentoRepository;
@@ -58,5 +62,22 @@ public class InsegnamentoService implements IInsegnamentoService{
 		// TODO Auto-generated method stub
 		insegnamentoRepository.updateabilitazione(insegnamentoDTO.getAbilitazione(),insegnamentoDTO.getIdInsegnamento());
 	}
-
+	
+	@Override
+	public List<Insegnamento> listainsegnamentibycorso(Corso corso) {
+		// TODO Auto-generated method stub
+		return insegnamentoRepository.listainsegnamentibycorso(corso);
+	}
+	
+	@Override
+	public List<Insegnamento> listainsegnamentibyDocente(Docente docente) {
+		// TODO Auto-generated method stub
+		return insegnamentoRepository.listainsegnamentibydocente(docente);
+	}
+	
+	@Override
+	public List<Insegnamento> listainsegnamentibyStudente(Corso corso) {
+		// TODO Auto-generated method stub
+		return insegnamentoRepository.listainsegnamentibystudente(corso);
+	}
 }

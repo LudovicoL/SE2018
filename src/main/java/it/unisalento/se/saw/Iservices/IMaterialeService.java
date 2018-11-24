@@ -5,6 +5,7 @@ import java.util.List;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.domain.Materiale;
+import it.unisalento.se.saw.dto.MaterialeDTO;
 import it.unisalento.se.saw.exceptions.MaterialeNotFoundException;
 
 public interface IMaterialeService {

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.unisalento.se.saw.Iservices.IStudenteService;
+import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.StudenteDTO;
@@ -65,4 +66,8 @@ public class StudenteService implements IStudenteService{
 			throw new StudenteNotFoundException();
 		}
 	}	*/
+	
+	public List<Studente> listastudentibycorso(Corso corso,Integer idstudente){
+		return studenteRepository.listastudentibycorso(corso,idstudente);
+	}
 }

@@ -1,19 +1,26 @@
 package it.unisalento.se.saw.adapter;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Segnalazione;
-import it.unisalento.se.saw.domain.Strumento;
 import it.unisalento.se.saw.dto.SegnalazioneDTO;
 
 public class SegnalazioneAdapter {
 	public static Segnalazione SegnalazioneDTOToSegnalazione(SegnalazioneDTO segnalazioneDTO, Docente docente, Aula aula) {
 		Segnalazione segnalazione=new Segnalazione();
+		
+		GregorianCalendar oggi=new GregorianCalendar();
+		Date data=oggi.getTime();
+
 		segnalazione.setDescrizione(segnalazioneDTO.getDescrizione());
 		segnalazione.setDocente(docente);
 		segnalazione.setAula(aula);
 		segnalazione.setAbilitazione(segnalazioneDTO.getAbilitazione());
 		segnalazione.setCommento(segnalazioneDTO.getCommento());
+		segnalazione.setData(data);
 		return segnalazione;
 	}
 	public static SegnalazioneDTO SegnalazioneToSegnalazioneDTO(Segnalazione segnalazione) {
@@ -34,6 +41,7 @@ public class SegnalazioneAdapter {
 		segnalazioneDTO.setNomeaula(segnalazione.getAula().getNome());
 		segnalazioneDTO.setNomedocente(segnalazione.getDocente().getUtente().getNome()+ " " +segnalazione.getDocente().getUtente().getCognome());
 		segnalazioneDTO.setCommento(segnalazione.getCommento());
+		segnalazioneDTO.setData(segnalazione.getData());
 		return segnalazioneDTO;
 	}	
 	
