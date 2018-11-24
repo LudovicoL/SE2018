@@ -10,6 +10,7 @@ import it.unisalento.se.saw.Iservices.ILezioneService;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Lezione;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.exceptions.LezioneNotFoundException;
 import it.unisalento.se.saw.repositories.InsegnamentoRepository;
 import it.unisalento.se.saw.repositories.LezioneRepository;
@@ -66,5 +67,14 @@ public class LezioneService implements ILezioneService{
 	public List<Lezione> lezioneDocente(Date datainizio, Date datafine,Docente docente) {
 		return lezioneRepository.lezioneDocente(datainizio,datafine,docente);
 	}
-
+	@Override
+	public List<Lezione> lezioneStudente(Date datainizio, Date datafine,Integer idstudente) {
+		return lezioneRepository.lezioneStudente(datainizio,datafine,idstudente);
+	}
+	
+	@Override
+	public List<Lezione> lezioneInsegnamento(int idInsegnamento){
+		Insegnamento insegnamento=insegnamentoRepository.getOne(idInsegnamento);
+		return lezioneRepository.lezioneInsegnamento(insegnamento);
+	}
 }

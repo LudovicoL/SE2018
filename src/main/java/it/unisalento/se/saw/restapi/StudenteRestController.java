@@ -17,17 +17,21 @@ import org.springframework.web.bind.annotation.RestController;
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
 import it.unisalento.se.saw.adapter.CorsoAdapter;
+import it.unisalento.se.saw.adapter.InsegnamentoAdapter;
 import it.unisalento.se.saw.adapter.StudenteAdapter;
 import it.unisalento.se.saw.adapter.UtenteAdapter;
 import it.unisalento.se.saw.domain.Corso;
+import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.CorsoDTO;
+import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 import it.unisalento.se.saw.services.CorsoService;
+import it.unisalento.se.saw.services.InsegnamentoService;
 
 
 
@@ -42,6 +46,8 @@ public class StudenteRestController {
 	IUtenteService utenteService;
 	@Autowired
 	CorsoService corsoService;
+	@Autowired
+	InsegnamentoService insegnamentoService;
 
 	public StudenteRestController() {
 		super();
@@ -104,5 +110,23 @@ public class StudenteRestController {
 	public void updateabilitazione(@RequestBody StudenteDTO studenteDTO) {
 		System.out.println(studenteDTO.getAbilitazione()+"  "+studenteDTO.getIdUtente());
 		studenteService.updateAbilitazione(studenteDTO);
+	}
+	
+	@GetMapping(value="/getStudentiByIdCorso/{id}/{idstudente}", produces=MediaType.APPLICATION_JSON_VALUE)
+	//quello che arriva in id sopra mettilo in id sotto
+	public List<StudenteDTO> getStudentiByIdCorso(@PathVariable("id") int id,@PathVariable("idstudente") int idstudente) throws CorsoNotFoundException, StudenteNotFoundException{
+		Corso corso=corsoService.getById(id);
+		List<Studente> studenti=studenteService.listastudentibycorso(corso,idstudente);
+		List<StudenteDTO> studDTO=new ArrayList<StudenteDTO>();
+		Utente utente=new Utente();
+		Iterator<Studente> student = studenti.iterator();
+		while(student.hasNext()) {
+			StudenteDTO studenteDTO= new StudenteDTO();
+			Studente stud=student.next();
+			utente=stud.getUtente();
+			studenteDTO=StudenteAdapter.StudenteToStudenteDTO(stud, utente);
+			studDTO.add(studenteDTO);	
+		}
+		return studDTO;
 	}
 }

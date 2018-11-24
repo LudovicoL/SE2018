@@ -11,6 +11,7 @@ import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Lezione;
+import it.unisalento.se.saw.domain.Studente;
 
 
 public interface LezioneRepository extends JpaRepository<Lezione, Integer>{
@@ -29,5 +30,11 @@ public interface LezioneRepository extends JpaRepository<Lezione, Integer>{
 
 	@Query("SELECT l FROM Lezione l where l.insegnamento in (SELECT i.idInsegnamento FROM Insegnamento i where i.docente=:idDocente) and l.datainizio>=:datainizio and l.datafine<=:datafine order by l.datainizio ")
 	public List<Lezione> lezioneDocente(@Param("datainizio") Date datainizio,@Param("datafine") Date datafine,@Param("idDocente") Docente docente);
+
+	@Query("SELECT l FROM Lezione l where l.insegnamento in (select i.idInsegnamento from Insegnamento i where i.corso in (select s.corso from Studente s where s.idStudente=:idStudente)) and l.datainizio>=:datainizio and l.datafine<=:datafine order by l.datainizio")
+	public List<Lezione> lezioneStudente(@Param("datainizio") Date datainizio,@Param("datafine") Date datafine,@Param("idStudente") Integer idstudente);
+
+	@Query("SELECT l FROM Lezione l where l.insegnamento=:idInsegnamento")
+	public List<Lezione> lezioneInsegnamento(@Param("idInsegnamento") Insegnamento insegnamento);
 
 }

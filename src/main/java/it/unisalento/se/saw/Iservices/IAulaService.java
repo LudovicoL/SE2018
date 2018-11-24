@@ -15,4 +15,5 @@ public interface IAulaService {
 	public void update(Aula aula);
 	public void delete(int idAula);
 	public List<Aula> auleLibere(Date datainizio, Date datafine);
+	List<Aula> auleLibereEsame(Date datainizio, Date datafine);
 }
