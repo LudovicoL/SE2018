@@ -3,6 +3,7 @@ package it.unisalento.se.saw.dto;
 import java.util.Date;
 
 public class MaterialeDTO {
+	private Integer idMateriale;
 	private String descrizione;
 	private String percorso;
 	private int idDocente;
@@ -45,5 +46,11 @@ public class MaterialeDTO {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public Integer getIdMateriale() {
+		return idMateriale;
+	}
+	public void setIdMateriale(Integer idMateriale) {
+		this.idMateriale = idMateriale;
 	}
 }

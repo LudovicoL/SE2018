@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.junit.rules.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,7 @@ import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 import it.unisalento.se.saw.services.CorsoService;
 import it.unisalento.se.saw.services.InsegnamentoService;
+import it.unisalento.se.saw.singleton.StudenteSingleton;
 
 
 
@@ -48,6 +51,10 @@ public class StudenteRestController {
 	CorsoService corsoService;
 	@Autowired
 	InsegnamentoService insegnamentoService;
+
+	StudenteSingleton classSingleton1 = StudenteSingleton.getInstance();
+	StudenteSingleton classSingleton2 = StudenteSingleton.getInstance();
+
 
 	public StudenteRestController() {
 		super();
@@ -128,5 +135,24 @@ public class StudenteRestController {
 			studDTO.add(studenteDTO);	
 		}
 		return studDTO;
+	}
+	
+	
+	
+	
+	@PostMapping(value="creaIstanza", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void creaIstanza(@RequestBody StudenteDTO studenteDTO) {
+		classSingleton1.setStudenteDTO(studenteDTO);
+		System.out.println(classSingleton1+","+classSingleton2);
+
+	}
+	
+	@RequestMapping(value="/cancellaIstanza", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void cancellaIstanza() throws InterruptedException  {
+		StudenteSingleton.clear();
+		StudenteSingleton.getInstance();
+		System.out.println(StudenteSingleton.getInstance() +"-"+classSingleton1);
+		if(classSingleton1!=StudenteSingleton.getInstance()) 
+			System.out.println("nullo");
 	}
 }

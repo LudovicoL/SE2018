@@ -10,6 +10,8 @@ import it.unisalento.se.saw.Iservices.ICorsoService;
 import it.unisalento.se.saw.Iservices.IGradimentoService;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Gradimento;
+import it.unisalento.se.saw.domain.Materiale;
+import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.repositories.CorsoRepository;
 import it.unisalento.se.saw.repositories.GradimentoRepository;
@@ -43,5 +45,10 @@ public class GradimentoService implements IGradimentoService{
 		return (int) gradimentoRepository.count();
 	}
 
+	@Override
+	public Integer getGiaVotato(Studente studente, Materiale idMateriale)  {
+		// TODO Auto-generated method stub
+		return gradimentoRepository.getGiaVotato(studente, idMateriale);
+	}
 
 }
