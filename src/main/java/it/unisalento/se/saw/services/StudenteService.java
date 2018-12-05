@@ -4,6 +4,7 @@ package it.unisalento.se.saw.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,4 +71,5 @@ public class StudenteService implements IStudenteService{
 	public List<Studente> listastudentibycorso(Corso corso,Integer idstudente){
 		return studenteRepository.listastudentibycorso(corso,idstudente);
 	}
+	
 }

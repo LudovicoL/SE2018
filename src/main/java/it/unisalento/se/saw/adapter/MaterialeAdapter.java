@@ -19,6 +19,7 @@ public class MaterialeAdapter {
 		materialeDTO.setDescrizione(materiale.getDescrizione());
 		materialeDTO.setPercorso(materiale.getPercorso());
 		materialeDTO.setData(materiale.getLezione().getDatainizio());
+		materialeDTO.setIdMateriale(materiale.getIdMateriale());
 		return materialeDTO;
 	}
 	
