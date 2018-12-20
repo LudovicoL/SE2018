@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Gradimento;
 import it.unisalento.se.saw.domain.Insegnamento;
+import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.domain.Materiale;
 import it.unisalento.se.saw.domain.Studente;
 
@@ -22,5 +23,8 @@ public interface GradimentoRepository extends JpaRepository<Gradimento, Integer>
 */
     @Query("select voto from Gradimento as g where g.studente=:idStudente and g.materiale=:idMateriale")
 	public Integer getGiaVotato(@Param("idStudente") Studente studente,@Param("idMateriale") Materiale idMateriale);
+
+    @Query("select voto from Gradimento as g where g.studente=:idStudente and g.lezione=:idLezione")
+	public Integer getGiaVotatoLezione(@Param("idStudente") Studente studente,@Param("idLezione") Lezione idLezione);
 
 }

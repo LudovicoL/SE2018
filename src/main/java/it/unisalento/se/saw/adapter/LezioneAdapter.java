@@ -31,6 +31,8 @@ public class LezioneAdapter {
 		lezioneDTO.setIdAula(lezione.getAula().getIdAula());
 		lezioneDTO.setIdInsegnamento(lezione.getInsegnamento().getIdInsegnamento());
 		lezioneDTO.setNomeaula(lezione.getAula().getNome());
+		lezioneDTO.setNomeInsegnamento(lezione.getInsegnamento().getNome());
+		lezioneDTO.setNomeDocente(lezione.getInsegnamento().getDocente().getUtente().getNome()+" "+lezione.getInsegnamento().getDocente().getUtente().getCognome());
 		return lezioneDTO;
 	}
 }
