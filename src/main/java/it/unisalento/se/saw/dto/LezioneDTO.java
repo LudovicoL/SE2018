@@ -11,6 +11,7 @@ public class LezioneDTO {
 	private int idLezione;
 	private String nomeaula;
 	private String nomeInsegnamento;
+	private String nomeDocente;
 
 	public int getAbilitazione() {
 		return abilitazione;
@@ -59,5 +60,11 @@ public class LezioneDTO {
 	}
 	public void setDatafine(Date datafine) {
 		this.datafine = datafine;
+	}
+	public String getNomeDocente() {
+		return nomeDocente;
+	}
+	public void setNomeDocente(String nomeDocente) {
+		this.nomeDocente = nomeDocente;
 	}
 }

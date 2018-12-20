@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.unisalento.se.saw.Iservices.IGradimentoService;
+import it.unisalento.se.saw.Iservices.ILezioneService;
 import it.unisalento.se.saw.Iservices.IMaterialeService;
 import it.unisalento.se.saw.Iservices.IStudenteService;
 import it.unisalento.se.saw.adapter.GradimentoAdapter;
@@ -26,6 +27,7 @@ import it.unisalento.se.saw.adapter.UtenteAdapter;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Gradimento;
 import it.unisalento.se.saw.domain.Insegnamento;
+import it.unisalento.se.saw.domain.Lezione;
 import it.unisalento.se.saw.domain.Materiale;
 import it.unisalento.se.saw.domain.Studente;
 import it.unisalento.se.saw.domain.Utente;
@@ -34,6 +36,7 @@ import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.GradimentoNotFoundException;
+import it.unisalento.se.saw.exceptions.LezioneNotFoundException;
 import it.unisalento.se.saw.exceptions.MaterialeNotFoundException;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
@@ -52,6 +55,9 @@ public class GradimentoRestController {
 	@Autowired
 	IStudenteService studenteService;
 	
+	@Autowired
+	ILezioneService lezioneService;
+	
 	public GradimentoRestController() {
 		super();
 	}
@@ -61,14 +67,26 @@ public class GradimentoRestController {
 	}
 	
 	@PostMapping(value="saveMateriale", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void post(@RequestBody GradimentoDTO gradimentoDTO) throws MaterialeNotFoundException, StudenteNotFoundException  {
+	public void post(@RequestBody GradimentoDTO gradimentoDTO) throws MaterialeNotFoundException, StudenteNotFoundException, LezioneNotFoundException  {
 		System.out.println(gradimentoDTO);
 		Gradimento gradimento=new Gradimento();
 		Materiale materiale=new Materiale();
+		Lezione lezione=new Lezione();
 		Studente studente=new Studente();
-		materiale=materialeService.getById(gradimentoDTO.getIdMateriale());
+		if(gradimentoDTO.getIdMateriale()>0) {
+			materiale=materialeService.getById(gradimentoDTO.getIdMateriale());
+		}
+		else {
+			materiale=null;
+		}
+		if(gradimentoDTO.getIdLezione()>0) {
+			lezione =lezioneService.getById(gradimentoDTO.getIdLezione());
+		}
+		else {
+			lezione=null;
+		}
 		studente=studenteService.getById(gradimentoDTO.getIdStudente());
-		gradimento=GradimentoAdapter.GradimentoDTOToGradimento(gradimentoDTO, studente, null, materiale);
+		gradimento=GradimentoAdapter.GradimentoDTOToGradimento(gradimentoDTO, studente, lezione, materiale);
 		gradimentoService.save(gradimento);
 	}
 	
@@ -78,6 +96,14 @@ public class GradimentoRestController {
 		Studente studente=studenteService.getById(idStudente);
 		Materiale materiale =materialeService.getById(idMateriale);
 		return gradimentoService.getGiaVotato(studente, materiale);		
+	}
+	
+	@GetMapping(value="/getGiaVotatoLezione/{idLezione}/{idStudente}", produces=MediaType.APPLICATION_JSON_VALUE)
+	//quello che arriva in id sopra mettilo in id sotto
+	public Integer getGiaVotatoLezione(@PathVariable("idLezione") int idLezione,@PathVariable("idStudente") int idStudente) throws StudenteNotFoundException, LezioneNotFoundException {
+		Studente studente=studenteService.getById(idStudente);
+		Lezione lezione =lezioneService.getById(idLezione);
+		return gradimentoService.getGiaVotatoLezione(studente, lezione);		
 	}
 	
 
