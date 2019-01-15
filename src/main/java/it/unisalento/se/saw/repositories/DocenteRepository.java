@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 
 public interface DocenteRepository extends JpaRepository<Docente, Integer>{
@@ -25,5 +26,8 @@ public interface DocenteRepository extends JpaRepository<Docente, Integer>{
     @Transactional
 	@Query("update Utente u set u.abilitazione=:abilitazione where u.idUtente=:idUtente")
 	public void updateAbilitazione(@Param("idUtente") int idUtente,@Param("abilitazione") int abilitazione);
+
+    @Query("Select distinct d from Docente d where d.idDocente=:idDocente")
+	public Docente docenteById(@Param("idDocente") int idDocente);
 
 }

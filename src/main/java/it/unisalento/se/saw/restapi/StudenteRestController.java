@@ -144,7 +144,6 @@ public class StudenteRestController {
 	public void creaIstanza(@RequestBody StudenteDTO studenteDTO) {
 		classSingleton1.setStudenteDTO(studenteDTO);
 		System.out.println(classSingleton1+","+classSingleton2);
-
 	}
 	
 	@RequestMapping(value="/cancellaIstanza", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -155,4 +154,38 @@ public class StudenteRestController {
 		if(classSingleton1!=StudenteSingleton.getInstance()) 
 			System.out.println("nullo");
 	}
+	
+	/*@GetMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
+	public boolean login(@RequestBody StudenteDTO studenteDTO) throws StudenteNotFoundException{
+		List<Studente> studente = null;
+		studente=(studenteService.getAll());
+		Utente utente=new Utente();
+		Iterator<Studente> student = studente.iterator();
+		while(student.hasNext()) {
+			StudenteDTO studenteeDTO= new StudenteDTO();
+			Studente stud=student.next();
+			utente=stud.getUtente();
+			studenteeDTO=StudenteAdapter.StudenteToStudenteDTO(stud, utente);
+			if(studenteeDTO.getEmail()==studenteDTO.getEmail() && studenteeDTO.getPassword()==studenteDTO.getPassword())
+			{
+				classSingleton1.setStudenteDTO(studenteDTO);
+				System.out.println(classSingleton1.getStudenteDTO());
+				return true;
+			}
+		}	
+	}
+	
+	
+	
+	@PostMapping(value="/setIstance", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void setIstance(@RequestBody StudenteDTO studenteDTO) throws StudenteNotFoundException{
+		classSingleton1.setStudenteDTO(studenteDTO);
+		System.out.println(classSingleton1.getStudenteDTO());
+		//return classSingleton1.getStudenteDTO();
+	}
+	
+	@GetMapping(value="/getIstance", produces=MediaType.APPLICATION_JSON_VALUE)
+	public StudenteDTO getIstance() throws StudenteNotFoundException{
+		return classSingleton1.getStudenteDTO();
+	}*/
 }

@@ -6,6 +6,7 @@ import it.unisalento.se.saw.domain.Utente;
 import it.unisalento.se.saw.dto.DocenteDTO;
 import it.unisalento.se.saw.dto.SegreteriaDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
+import it.unisalento.se.saw.dto.UtenteDTO;
 
 public class StudenteSingleton {
 	

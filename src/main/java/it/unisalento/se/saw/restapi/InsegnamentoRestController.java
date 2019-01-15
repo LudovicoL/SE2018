@@ -18,16 +18,21 @@ import it.unisalento.se.saw.Iservices.ICorsoService;
 import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.Iservices.IInsegnamentoService;
 import it.unisalento.se.saw.Iservices.IStudenteService;
+import it.unisalento.se.saw.Iservices.IUtenteService;
+import it.unisalento.se.saw.adapter.DocenteAdapter;
 import it.unisalento.se.saw.adapter.InsegnamentoAdapter;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
 import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Studente;
+import it.unisalento.se.saw.domain.Utente;
+import it.unisalento.se.saw.dto.DocenteDTO;
 import it.unisalento.se.saw.dto.InsegnamentoDTO;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.InsegnamentoNotFoundException;
 import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
+import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 
 @RestController() //puoi usare i metodi taggati all'interno con l'annotazione responsebody
 @RequestMapping(value="/insegnamento")
@@ -41,6 +46,8 @@ public class InsegnamentoRestController {
 	IDocenteService docenteService;
 	@Autowired
 	IStudenteService studenteService;
+	@Autowired
+	IUtenteService utenteService;
 	
 	public InsegnamentoRestController() {
 		super();
@@ -99,6 +106,25 @@ public class InsegnamentoRestController {
 			insDTO.add(insegnamentoDTO);	
 		}
 		return insDTO;
+	}
+	
+	@GetMapping(value="/getByIdCorsoDistinct/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	//quello che arriva in id sopra mettilo in id sotto
+	public List<DocenteDTO> getByIdCorsoDistinct(@PathVariable("id") int id) throws CorsoNotFoundException, UtenteNotFoundException{
+		Corso corso=corsoService.getById(id);
+		List<Docente> docenti=new ArrayList<Docente>();
+		List<DocenteDTO> docentiDTO=new ArrayList<DocenteDTO>();
+		docenti=insegnamentoService.listainsegnamentibycorsoDistinct(corso);
+		Iterator<Docente> docent = docenti.iterator();
+		while(docent.hasNext()) {
+			DocenteDTO docenteDTO= new DocenteDTO();
+			Docente doc=docent.next();
+			Utente utente=new Utente();
+			utente=utenteService.getById(doc.getUtente().getIdUtente());
+			docenteDTO=DocenteAdapter.DocenteToDocenteDTO(doc,utente);
+			docentiDTO.add(docenteDTO);	
+		}
+		return docentiDTO;
 	}
 	
 	@GetMapping(value="/getByIdDocente/{id}", produces=MediaType.APPLICATION_JSON_VALUE)

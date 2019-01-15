@@ -103,7 +103,6 @@ public class AulaRestController {
 		aulaService.delete(idAula);
 	}
 	
-	
 	@GetMapping(value="/aulelibere/{datainizio}/{datafine}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<AulaDTO> aulelibere(@PathVariable("datainizio") Date datainizio,@PathVariable("datafine") Date datafine) throws AulaNotFoundException, ParseException{
 		List<Aula> aule=new ArrayList<Aula>();
@@ -133,8 +132,6 @@ public class AulaRestController {
 		}
 		return auleDTO;	
 	}	
-	
-	
 	
 	
 }
