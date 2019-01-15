@@ -20,5 +20,6 @@ public interface IInsegnamentoService {
 	public List<Insegnamento> listainsegnamentibycorso(Corso corso);
 	public List<Insegnamento> listainsegnamentibyDocente(Docente docente);
 	public List<Insegnamento> listainsegnamentibyStudente(Corso corso);
+	public List<Docente> listainsegnamentibycorsoDistinct(Corso corso);
 
 }

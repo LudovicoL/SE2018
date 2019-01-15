@@ -8,21 +8,31 @@ import java.util.Iterator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import it.unisalento.se.saw.Iservices.ICorsoService;
 import it.unisalento.se.saw.Iservices.IDocenteService;
+import it.unisalento.se.saw.Iservices.IInsegnamentoService;
 import it.unisalento.se.saw.Iservices.IUtenteService;
+import it.unisalento.se.saw.adapter.AulaAdapter;
 import it.unisalento.se.saw.adapter.DocenteAdapter;
 import it.unisalento.se.saw.adapter.UtenteAdapter;
+import it.unisalento.se.saw.domain.Aula;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
+import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.domain.Utente;
+import it.unisalento.se.saw.dto.AulaDTO;
 import it.unisalento.se.saw.dto.DocenteDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
+import it.unisalento.se.saw.exceptions.AulaNotFoundException;
 import it.unisalento.se.saw.exceptions.CorsoNotFoundException;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
@@ -35,6 +45,8 @@ public class DocenteRestController {
 	IDocenteService docenteService;
 	@Autowired
 	IUtenteService utenteService;
+	@Autowired
+	IInsegnamentoService insegnamentoService;
 	
 	public DocenteRestController() {
 		super();
@@ -86,4 +98,15 @@ public class DocenteRestController {
 	public void updateabilitazione(@RequestBody DocenteDTO docenteDTO) {
 		docenteService.updateAbilitazione(docenteDTO);
 	}
+	
+	@GetMapping(value="/getDocenteById/{idDocente}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public DocenteDTO getById(@PathVariable("idDocente") int idDocente) throws AulaNotFoundException, DocenteNotFoundException, UtenteNotFoundException{
+		DocenteDTO docenteDTO=new DocenteDTO();
+		Docente docente=new Docente();
+		docente=docenteService.getById(idDocente);
+		Utente utente=new Utente();
+		utente=utenteService.getById(docente.getUtente().getIdUtente());
+		docenteDTO=DocenteAdapter.DocenteToDocenteDTO(docente,utente);
+		return docenteDTO;
+	}	
 }

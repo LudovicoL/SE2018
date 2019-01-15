@@ -80,4 +80,10 @@ public class InsegnamentoService implements IInsegnamentoService{
 		// TODO Auto-generated method stub
 		return insegnamentoRepository.listainsegnamentibystudente(corso);
 	}
+	
+	@Override
+	public List<Docente> listainsegnamentibycorsoDistinct(Corso corso) {
+		// TODO Auto-generated method stub
+		return insegnamentoRepository.listainsegnamentibycorsoDistinct(corso);
+	}
 }

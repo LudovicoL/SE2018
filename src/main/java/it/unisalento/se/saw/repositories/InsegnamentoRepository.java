@@ -33,5 +33,9 @@ public interface InsegnamentoRepository extends JpaRepository<Insegnamento, Inte
 
     @Query("select i from Insegnamento i where i.corso=:idCorso")
 	public List<Insegnamento> listainsegnamentibystudente(@Param("idCorso")Corso corso);
+    
+    @Query("select distinct i.docente from Insegnamento i where i.corso=:idCorso")
+	public List<Docente> listainsegnamentibycorsoDistinct(@Param("idCorso") Corso corso);
+
 
 }
