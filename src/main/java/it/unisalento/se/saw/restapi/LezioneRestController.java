@@ -67,7 +67,11 @@ public class LezioneRestController {
 	}
 	
 	@PatchMapping(value="/update", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public void update(@RequestBody Lezione lezione) throws LezioneNotFoundException {
+	public void update(@RequestBody LezioneDTO lezioneDTO) throws LezioneNotFoundException {
+		Aula aula=aulaService.getById(lezioneDTO.getIdAula());
+		Insegnamento insegnamento=insegnamentoService.getById(lezioneDTO.getIdInsegnamento());
+		Lezione lezione=LezioneAdapter.LezioneDTOToLezione(lezioneDTO, aula, insegnamento);
+		System.out.println(lezione);
 		lezioneService.update(lezione);
 	}
 	

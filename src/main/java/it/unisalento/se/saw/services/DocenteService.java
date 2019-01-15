@@ -2,10 +2,12 @@ package it.unisalento.se.saw.services;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import it.unisalento.se.saw.Iservices.IDocenteService;
 import it.unisalento.se.saw.domain.Corso;
 import it.unisalento.se.saw.domain.Docente;
+import it.unisalento.se.saw.domain.Insegnamento;
 import it.unisalento.se.saw.dto.DocenteDTO;
 import it.unisalento.se.saw.dto.StudenteDTO;
 import it.unisalento.se.saw.exceptions.DocenteNotFoundException;
@@ -54,4 +56,11 @@ public class DocenteService implements IDocenteService{
 	public void updateAbilitazione(DocenteDTO docenteDTO) {
 		docenteRepository.updateAbilitazione(docenteDTO.getIdUtente(),docenteDTO.getAbilitazione());
 	}	
+	
+	@Override
+	public Docente docenteById(int idDocente) {
+		return docenteRepository.docenteById(idDocente);
+	}
+
+
 }

@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import org.junit.rules.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,7 @@ import it.unisalento.se.saw.exceptions.StudenteNotFoundException;
 import it.unisalento.se.saw.exceptions.UtenteNotFoundException;
 import it.unisalento.se.saw.services.CorsoService;
 import it.unisalento.se.saw.services.InsegnamentoService;
+import it.unisalento.se.saw.singleton.StudenteSingleton;
 
 
 
@@ -48,6 +51,10 @@ public class StudenteRestController {
 	CorsoService corsoService;
 	@Autowired
 	InsegnamentoService insegnamentoService;
+
+	StudenteSingleton classSingleton1 = StudenteSingleton.getInstance();
+	StudenteSingleton classSingleton2 = StudenteSingleton.getInstance();
+
 
 	public StudenteRestController() {
 		super();
@@ -129,4 +136,56 @@ public class StudenteRestController {
 		}
 		return studDTO;
 	}
+	
+	
+	
+	
+	@PostMapping(value="creaIstanza", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void creaIstanza(@RequestBody StudenteDTO studenteDTO) {
+		classSingleton1.setStudenteDTO(studenteDTO);
+		System.out.println(classSingleton1+","+classSingleton2);
+	}
+	
+	@RequestMapping(value="/cancellaIstanza", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	public void cancellaIstanza() throws InterruptedException  {
+		StudenteSingleton.clear();
+		StudenteSingleton.getInstance();
+		System.out.println(StudenteSingleton.getInstance() +"-"+classSingleton1);
+		if(classSingleton1!=StudenteSingleton.getInstance()) 
+			System.out.println("nullo");
+	}
+	
+	/*@GetMapping(value="/login", produces=MediaType.APPLICATION_JSON_VALUE)
+	public boolean login(@RequestBody StudenteDTO studenteDTO) throws StudenteNotFoundException{
+		List<Studente> studente = null;
+		studente=(studenteService.getAll());
+		Utente utente=new Utente();
+		Iterator<Studente> student = studente.iterator();
+		while(student.hasNext()) {
+			StudenteDTO studenteeDTO= new StudenteDTO();
+			Studente stud=student.next();
+			utente=stud.getUtente();
+			studenteeDTO=StudenteAdapter.StudenteToStudenteDTO(stud, utente);
+			if(studenteeDTO.getEmail()==studenteDTO.getEmail() && studenteeDTO.getPassword()==studenteDTO.getPassword())
+			{
+				classSingleton1.setStudenteDTO(studenteDTO);
+				System.out.println(classSingleton1.getStudenteDTO());
+				return true;
+			}
+		}	
+	}
+	
+	
+	
+	@PostMapping(value="/setIstance", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public void setIstance(@RequestBody StudenteDTO studenteDTO) throws StudenteNotFoundException{
+		classSingleton1.setStudenteDTO(studenteDTO);
+		System.out.println(classSingleton1.getStudenteDTO());
+		//return classSingleton1.getStudenteDTO();
+	}
+	
+	@GetMapping(value="/getIstance", produces=MediaType.APPLICATION_JSON_VALUE)
+	public StudenteDTO getIstance() throws StudenteNotFoundException{
+		return classSingleton1.getStudenteDTO();
+	}*/
 }

@@ -29,6 +29,7 @@ public class StudenteAdapter {
 		studenteDTO.setIndirizzo(utente.getIndirizzo());	
 		studenteDTO.setIdUtente(utente.getIdUtente());
 		studenteDTO.setIdStudente(studente.getIdStudente());
+		studenteDTO.setPassword(utente.getPassword());
 		if(utente.getAbilitazione()==1)
 			studenteDTO.setAbilit("Attivo");
 		else
